@@ -5,11 +5,11 @@
 // 免費提供個人自主監測與非營利學術研究使用；嚴格禁止任何商業營利與付費銷售用途。
 // ============================================================================
 
-import { AudioEngine } from './audio-engine.js?v=12';
-import { Calibrator } from './calibrator.js?v=12';
-import { AudiometryStateMachine } from './state-machine.js?v=12';
-import { AudiogramRenderer } from './audiogram.js?v=12';
-import { t, initI18n, setLanguage, getCurrentLanguage } from './i18n.js?v=12';
+import { AudioEngine } from './audio-engine.js?v=13';
+import { Calibrator } from './calibrator.js?v=13';
+import { AudiometryStateMachine } from './state-machine.js?v=13';
+import { AudiogramRenderer } from './audiogram.js?v=13';
+import { t, initI18n, setLanguage, getCurrentLanguage } from './i18n.js?v=13';
 
 class HearingTestApp {
   constructor() {

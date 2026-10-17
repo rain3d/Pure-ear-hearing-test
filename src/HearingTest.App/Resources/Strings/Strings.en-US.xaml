@@ -174,4 +174,16 @@
     <sys:String x:Key="Str_StatusRecorded">Response Recorded</sys:String>
     <sys:String x:Key="Str_StatusNoResponse">No Response</sys:String>
     <sys:String x:Key="Str_LicenseFooter">Open Source: CC BY-NC 4.0  |  Author: rain3d (https://github.com/rain3d)  |  Free for personal &amp; research use. Commercial use strictly prohibited.</sys:String>
+
+    <!-- Full-Page Startup Disclaimer Modal -->
+    <sys:String x:Key="Str_DisclaimerModalTitle">⚠️ Pure-Tone Audiometry - Safety Rules &amp; User Agreement</sys:String>
+    <sys:String x:Key="Str_DisclaimerModalSubtitle">Please carefully review and agree to the following safety guidelines and legal terms before using this tool:</sys:String>
+    <sys:String x:Key="Str_DisclaimerSectionVolumeTitle">1. Critical Hearing Protection (Lower Volume Prior to Testing)</sys:String>
+    <sys:String x:Key="Str_DisclaimerSectionVolumeContent">• Prior to each testing session, always turn down your operating system, DAC/amplifier, or device volume to a LOW level before putting on headphones.&#x0a;• Never initiate testing at high or unverified volume levels to prevent accidental loud stimulus from causing acute acoustic trauma or hearing damage!&#x0a;• Use the Pre-test Sound Check to verify comfortable audibility (recommending physical volume around 50%~70%), and do not alter volume settings during testing.</sys:String>
+    <sys:String x:Key="Str_DisclaimerSectionLegalTitle">2. Tool Disclaimer &amp; Non-Medical Device Notice</sys:String>
+    <sys:String x:Key="Str_DisclaimerSectionLegalContent">• This software is designed for hearing research, algorithm verification, and personal hearing wellness tracking. It is NOT a certified clinical medical device.&#x0a;• Test results carry no official medical diagnostic validity and must not be used for formal medical diagnosis, disability claims, military fitness, or legal/insurance purposes.&#x0a;• Data depends on consumer headphone responses, audio DAC linearity, and ambient noise levels, intended solely for self-tracking.&#x0a;• If you experience sudden hearing deterioration, continuous tinnitus, vertigo, or ear pain, consult a qualified ENT physician and certified audiologist immediately.</sys:String>
+    <sys:String x:Key="Str_DisclaimerSectionLicenseTitle">3. Open Source License &amp; Non-Commercial Notice (CC BY-NC 4.0)</sys:String>
+    <sys:String x:Key="Str_DisclaimerSectionLicenseContent">• Authored by rain3d and distributed on GitHub under the Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0).&#x0a;• Free for personal self-monitoring and academic research; unauthorized commercial use, paid audiometric services, or commercial bundling is strictly prohibited.</sys:String>
+    <sys:String x:Key="Str_DisclaimerBtnAgree">✅ I Have Read &amp; Agree to the Terms (Enter Application)</sys:String>
+    <sys:String x:Key="Str_DisclaimerBtnDecline">❌ Disagree &amp; Exit Application</sys:String>
 </ResourceDictionary>

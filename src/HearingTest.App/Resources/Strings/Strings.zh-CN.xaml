@@ -174,4 +174,16 @@
     <sys:String x:Key="Str_StatusRecorded">已记录反应</sys:String>
     <sys:String x:Key="Str_StatusNoResponse">无反应</sys:String>
     <sys:String x:Key="Str_LicenseFooter">开源授权：CC BY-NC 4.0  |  作者：rain3d (https://github.com/rain3d)  |  个人与学术研究免费，禁止商业营利用途</sys:String>
+
+    <!-- Full-Page Startup Disclaimer Modal -->
+    <sys:String x:Key="Str_DisclaimerModalTitle">⚠️ 纯音听力测试系统 - 安全使用守则与免责协议</sys:String>
+    <sys:String x:Key="Str_DisclaimerModalSubtitle">请于开始使用本工具前，详细阅读并确认同意以下各项安全指引与法定条款：</sys:String>
+    <sys:String x:Key="Str_DisclaimerSectionVolumeTitle">1. 听力保护重要须知（耳机音量务必先调低）</sys:String>
+    <sys:String x:Key="Str_DisclaimerSectionVolumeContent">• 每次进行测试前，请务必先将操作系统、耳机放大器或播放设备之音量调至【低音量】状态再戴上耳机开始测试。&#x0a;• 切勿在系统处于高音量或未知音量下直接启动测试，以防突发大音量刺激造成急性听力创伤 (Acoustic Trauma) 或听力受损！&#x0a;• 测试开始后，可通过“测前试听”确认声音清晰舒适（建议维持系统实体音量约 50%~70%），测试全程切勿再随意变动音量旋钮。</sys:String>
+    <sys:String x:Key="Str_DisclaimerSectionLegalTitle">2. 工具免责权与非医疗器材法定声明</sys:String>
+    <sys:String x:Key="Str_DisclaimerSectionLegalContent">• 本软件为纯音听力研究、听力学算法验证与个人健康趋势追踪工具，【非主管机关查验核准之临床医疗器材】。&#x0a;• 本工具测试结果不具备任何正式医疗诊断效力，严禁用于正式医疗诊断、保险理赔、兵役体检认定或职业失能判定。&#x0a;• 量测数据受消费型耳机频率响应、声卡硬件特性与环境背景噪声影响，仅供个人日常自我追踪参考。&#x0a;• 若受测者自觉有急性单侧听力下降、持续性高频耳鸣、眩晕或耳朵疼痛等症状，应立即前往医院耳鼻喉科（ENT）专科门诊寻求合格医师与听力师之正式临床检查。</sys:String>
+    <sys:String x:Key="Str_DisclaimerSectionLicenseTitle">3. 开源授权与非商业用途协议 (CC BY-NC 4.0)</sys:String>
+    <sys:String x:Key="Str_DisclaimerSectionLicenseContent">• 本项目由 rain3d 于 GitHub 开源发布，采 CC BY-NC 4.0 授权。&#x0a;• 仅限个人日常使用、学术研究与学校教学展示，严禁任何未经原作者书面授权之商业营利、付费筛检服务或硬件捆绑销售行为。</sys:String>
+    <sys:String x:Key="Str_DisclaimerBtnAgree">✅ 我已详阅并同意上述警语与协议 (开始使用)</sys:String>
+    <sys:String x:Key="Str_DisclaimerBtnDecline">❌ 不同意并结束程序 (离开)</sys:String>
 </ResourceDictionary>

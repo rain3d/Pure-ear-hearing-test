@@ -22,6 +22,67 @@
   <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
+  <!-- Full-Page Mandatory Startup Disclaimer Modal Gate -->
+  <div id="disclaimer-gate" style="position: fixed; inset: 0; z-index: 99999; background: #070b14; display: flex; flex-direction: column; padding: 20px 16px; overflow-y: auto;">
+    <div style="max-width: 600px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; flex: 1; min-height: 100%;">
+      <!-- Gate Header -->
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #1e293b;">
+        <div style="padding-right: 8px;">
+          <div style="font-size: 17px; font-weight: 800; color: #fbbf24; line-height: 1.3;" data-i18n="disclaimerModalTitle">⚠️ 純音聽力測驗系統 - 安全使用守則與免責協議</div>
+          <div style="font-size: 12px; color: #94a3b8; margin-top: 4px;" data-i18n="disclaimerModalSubtitle">請於開始使用本工具前，詳細閱讀並確認同意以下各項安全指引與法定條款：</div>
+        </div>
+        <select id="disclaimer-lang-select" class="lang-selector" style="flex-shrink: 0;" aria-label="語言切換 / Language">
+          <option value="zh-TW">繁體中文</option>
+          <option value="zh-CN">简体中文</option>
+          <option value="en-US">English</option>
+        </select>
+      </div>
+
+      <!-- Gate Body / Scrollable Cards -->
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 14px; margin-bottom: 20px;">
+        <!-- Card 1: Volume Warning (Amber / Warning Theme) -->
+        <div style="background: rgba(217, 119, 6, 0.12); border: 1.5px solid #d97706; border-radius: 12px; padding: 14px; box-shadow: 0 4px 12px rgba(217, 119, 6, 0.1);">
+          <div style="font-size: 14px; font-weight: bold; color: #fbbf24; margin-bottom: 6px;" data-i18n="disclaimerSectionVolumeTitle">1. 聽力保護重要須知（耳機音量務必先調低）</div>
+          <div style="font-size: 12px; color: #fde68a; line-height: 1.6;" data-i18n-html="disclaimerSectionVolumeContent">
+            • 每次進行測驗前，請務必先將作業系統、耳機擴大器或手機媒體音量調至【低音量】狀態再戴上耳機開始施測。<br>
+            • 切勿在系統處於高音量或未知音量下直接啟動測試，以防突發大音量刺激造成急性聽力創傷 (Acoustic Trauma) 或聽力受損！<br>
+            • 測驗開始後，可透過「測前試聽」確認聲音清晰舒適（建議維持系統實體音量約 50%~70%），施測全程切勿再隨意更動音量旋鈕。
+          </div>
+        </div>
+
+        <!-- Card 2: Legal & Non-Medical Notice (Blue / Accent Theme) -->
+        <div style="background: #0d1526; border: 1px solid #1e3a8a; border-radius: 12px; padding: 14px;">
+          <div style="font-size: 14px; font-weight: bold; color: #38bdf8; margin-bottom: 6px;" data-i18n="disclaimerSectionLegalTitle">2. 工具免責權與非醫療器材法定聲明</div>
+          <div style="font-size: 12px; color: #cbd5e1; line-height: 1.6;" data-i18n-html="disclaimerSectionLegalContent">
+            • 本軟體為純音聽力研究、聽力學演算法驗證與個人健康趨勢追蹤工具，【非主管機關查驗核准之臨床醫療器材】。<br>
+            • 本工具測試結果不具備任何正式醫療診斷效力，嚴禁用於正式醫療診斷、保險理賠、兵役體檢認定或職業勞保失能判定。<br>
+            • 量測數據受消費型耳機頻率響應、音效卡硬體特性與環境背景噪音影響，僅供個人日常自我追蹤參考。<br>
+            • 若受測者自覺有急性單側聽力下降、持續性高頻耳鳴、眩暈或耳朵疼痛等症狀，應立即前往醫院耳鼻喉科（ENT）專科門診尋求合格醫師與聽力師之正式臨床檢查。
+          </div>
+        </div>
+
+        <!-- Card 3: License Notice -->
+        <div style="background: #090e1a; border: 1px solid #1e293b; border-radius: 12px; padding: 14px;">
+          <div style="font-size: 14px; font-weight: bold; color: #94a3b8; margin-bottom: 6px;" data-i18n="disclaimerSectionLicenseTitle">3. 開源授權與非商業用途協議 (CC BY-NC 4.0)</div>
+          <div style="font-size: 12px; color: #64748b; line-height: 1.6;" data-i18n-html="disclaimerSectionLicenseContent">
+            • 本專案由 rain3d 於 GitHub 開源發布，採 CC BY-NC 4.0 授權。<br>
+            • 僅限個人日常使用、學術研究與學校教學展示，嚴禁任何未經原作者書面授權之商業營利、付費篩檢服務或硬體綑綁銷售行為。
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div style="display: flex; gap: 10px; margin-top: auto; padding-top: 10px;">
+        <button id="btn-disclaimer-decline" style="flex: 1; padding: 14px 10px; background: #261111; border: 1.5px solid #ef4444; border-radius: 10px; color: #f87171; font-size: 13px; font-weight: bold; cursor: pointer;" data-i18n="disclaimerBtnDecline">
+          ❌ 不同意並結束離開
+        </button>
+        <button id="btn-disclaimer-agree" style="flex: 1.5; padding: 14px 10px; background: linear-gradient(135deg, #2563eb, #1d4ed8); border: none; border-radius: 10px; color: #ffffff; font-size: 14px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);" data-i18n="disclaimerBtnAgree">
+          ✅ 我已詳閱並同意 (開始使用)
+        </button>
+      </div>
+    </div>
+  </div>
+
   <div id="app">
     <!-- Top Header -->
     <header class="app-header">
@@ -474,16 +535,38 @@
   </div>
 
   <script type="module">
-    import { initI18n, setLanguage } from './js/i18n.js?v=12';
+    import { initI18n, setLanguage, t } from './js/i18n.js?v=13';
     window.setLanguage = setLanguage;
     initI18n();
-    const select = document.getElementById('lang-select');
-    if (select) {
-      select.addEventListener('change', (e) => {
-        setLanguage(e.target.value);
+
+    // Language dropdown listeners
+    ['lang-select', 'disclaimer-lang-select'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.addEventListener('change', (e) => setLanguage(e.target.value));
+      }
+    });
+
+    // Disclaimer Gate Action Listeners
+    const gate = document.getElementById('disclaimer-gate');
+    const btnAgree = document.getElementById('btn-disclaimer-agree');
+    const btnDecline = document.getElementById('btn-disclaimer-decline');
+
+    if (btnAgree && gate) {
+      btnAgree.addEventListener('click', () => {
+        gate.style.display = 'none';
+      });
+    }
+
+    if (btnDecline && gate) {
+      btnDecline.addEventListener('click', () => {
+        try {
+          window.close();
+        } catch (e) {}
+        gate.innerHTML = `<div style="max-width: 500px; margin: auto; text-align: center; padding: 40px 20px; line-height: 1.8; color: #f87171; font-size: 16px; font-weight: bold;" data-i18n-html="disclaimerExitNotice">${t('disclaimerExitNotice')}</div>`;
       });
     }
   </script>
-  <script type="module" src="js/app.js?v=12"></script>
+  <script type="module" src="js/app.js?v=13"></script>
 </body>
 </html>

@@ -132,7 +132,20 @@ export const translations = {
     calibPlayRefTone: '🔊 播放 1000Hz 參考音',
     calibStopTone: '⏹️ 停止',
     calibSplLeftLabel: '左耳實測 (dB SPL)',
-    calibSplRightLabel: '右耳實測 (dB SPL)'
+    calibSplRightLabel: '右耳實測 (dB SPL)',
+
+    // Full-Page Startup Disclaimer Modal
+    disclaimerModalTitle: '⚠️ 純音聽力測驗系統 - 安全使用守則與免責協議',
+    disclaimerModalSubtitle: '請於開始使用本工具前，詳細閱讀並確認同意以下各項安全指引與法定條款：',
+    disclaimerSectionVolumeTitle: '1. 聽力保護重要須知（耳機音量務必先調低）',
+    disclaimerSectionVolumeContent: '• 每次進行測驗前，請務必先將作業系統、耳機擴大器或手機媒體音量調至【低音量】狀態再戴上耳機開始施測。<br>• 切勿在系統處於高音量或未知音量下直接啟動測試，以防突發大音量刺激造成急性聽力創傷 (Acoustic Trauma) 或聽力受損！<br>• 測驗開始後，可透過「測前試聽」確認聲音清晰舒適（建議維持系統實體音量約 50%~70%），施測全程切勿再隨意更動音量旋鈕。',
+    disclaimerSectionLegalTitle: '2. 工具免責權與非醫療器材法定聲明',
+    disclaimerSectionLegalContent: '• 本軟體為純音聽力研究、聽力學演算法驗證與個人健康趨勢追蹤工具，【非主管機關查驗核准之臨床醫療器材】。<br>• 本工具測試結果不具備任何正式醫療診斷效力，嚴禁用於正式醫療診斷、保險理賠、兵役體檢認定或職業勞保失能判定。<br>• 量測數據受消費型耳機頻率響應、音效卡硬體特性與環境背景噪音影響，僅供個人日常自我追蹤參考。<br>• 若受測者自覺有急性單側聽力下降、持續性高頻耳鳴、眩暈或耳朵疼痛等症狀，應立即前往醫院耳鼻喉科（ENT）專科門診尋求合格醫師與聽力師之正式臨床檢查。',
+    disclaimerSectionLicenseTitle: '3. 開源授權與非商業用途協議 (CC BY-NC 4.0)',
+    disclaimerSectionLicenseContent: '• 本專案由 rain3d 於 GitHub 開源發布，採 CC BY-NC 4.0 授權。<br>• 僅限個人日常使用、學術研究與學校教學展示，嚴禁任何未經原作者書面授權之商業營利、付費篩檢服務或硬體綑綁銷售行為。',
+    disclaimerBtnAgree: '✅ 我已詳閱並同意上述警語與協議 (開始使用)',
+    disclaimerBtnDecline: '❌ 不同意並結束離開',
+    disclaimerExitNotice: '🛑 您已選擇不同意條款，測驗工具已關閉。<br><br>請直接關閉此瀏覽器分頁。<br><span style="font-size:12px;color:#94a3b8;">（若您改變心意，可重新整理此網頁並同意條款後開始測驗）</span>'
   },
 
   'zh-CN': {
@@ -264,7 +277,20 @@ export const translations = {
     calibPlayRefTone: '🔊 播放 1000Hz 参考音',
     calibStopTone: '⏹️ 停止',
     calibSplLeftLabel: '左耳实测 (dB SPL)',
-    calibSplRightLabel: '右耳实测 (dB SPL)'
+    calibSplRightLabel: '右耳实测 (dB SPL)',
+
+    // Full-Page Startup Disclaimer Modal
+    disclaimerModalTitle: '⚠️ 纯音听力测试系统 - 安全使用守则与免责协议',
+    disclaimerModalSubtitle: '请于开始使用本工具前，详细阅读并确认同意以下各项安全指引与法定条款：',
+    disclaimerSectionVolumeTitle: '1. 听力保护重要须知（耳机音量务必先调低）',
+    disclaimerSectionVolumeContent: '• 每次进行测试前，请务必先将操作系统、耳机放大器或手机媒体音量调至【低音量】状态再戴上耳机开始测试。<br>• 切勿在系统处于高音量或未知音量下直接启动测试，以防突发大音量刺激造成急性听力创伤 (Acoustic Trauma) 或听力受损！<br>• 测试开始后，可通过“测前试听”确认声音清晰舒适（建议维持系统实体音量约 50%~70%），测试全程切勿再随意变动音量旋钮。',
+    disclaimerSectionLegalTitle: '2. 工具免责权与非医疗器材法定声明',
+    disclaimerSectionLegalContent: '• 本软件为纯音听力研究、听力学算法验证与个人健康趋势追踪工具，【非主管机关查验核准之临床医疗器材】。<br>• 本工具测试结果不具备任何正式医疗诊断效力，严禁用于正式医疗诊断、保险理赔、兵役体检认定或职业失能判定。<br>• 量测数据受消费型耳机频率响应、声卡硬件特性与环境背景噪声影响，仅供个人日常自我追踪参考。<br>• 若受测者自觉有急性单侧听力下降、持续性高频耳鸣、眩晕或耳朵疼痛等症状，应立即前往医院耳鼻喉科（ENT）专科门诊寻求合格医师与听力师之正式临床检查。',
+    disclaimerSectionLicenseTitle: '3. 开源授权与非商业用途协议 (CC BY-NC 4.0)',
+    disclaimerSectionLicenseContent: '• 本项目由 rain3d 于 GitHub 开源发布，采 CC BY-NC 4.0 授权。<br>• 仅限个人日常使用、学术研究与学校教学展示，严禁任何未经原作者书面授权之商业营利、付费筛检服务或硬件捆绑销售行为。',
+    disclaimerBtnAgree: '✅ 我已详阅并同意上述警语与协议 (开始使用)',
+    disclaimerBtnDecline: '❌ 不同意并结束离开',
+    disclaimerExitNotice: '🛑 您已选择不同意条款，测试工具已关闭。<br><br>请直接关闭此浏览器标签页。<br><span style="font-size:12px;color:#94a3b8;">（若您改变心意，可刷新此网页并同意条款后开始测试）</span>'
   },
 
   'en-US': {
@@ -396,7 +422,20 @@ export const translations = {
     calibPlayRefTone: '🔊 Play 1000Hz Reference Tone',
     calibStopTone: '⏹️ Stop',
     calibSplLeftLabel: 'Left Measured (dB SPL)',
-    calibSplRightLabel: 'Right Measured (dB SPL)'
+    calibSplRightLabel: 'Right Measured (dB SPL)',
+
+    // Full-Page Startup Disclaimer Modal
+    disclaimerModalTitle: '⚠️ Pure-Tone Audiometry - Safety Rules & User Agreement',
+    disclaimerModalSubtitle: 'Please carefully review and agree to the following safety guidelines and legal terms before using this tool:',
+    disclaimerSectionVolumeTitle: '1. Critical Hearing Protection (Lower Volume Prior to Testing)',
+    disclaimerSectionVolumeContent: '• Prior to each testing session, always turn down your operating system, DAC/amplifier, or mobile media volume to a LOW level before putting on headphones.<br>• Never initiate testing at high or unverified volume levels to prevent accidental loud stimulus from causing acute acoustic trauma or hearing damage!<br>• Use the Pre-test Sound Check to verify comfortable audibility (recommending physical volume around 50%~70%), and do not alter volume settings during testing.',
+    disclaimerSectionLegalTitle: '2. Tool Disclaimer & Non-Medical Device Notice',
+    disclaimerSectionLegalContent: '• This software is designed for hearing research, algorithm verification, and personal hearing wellness tracking. It is NOT a certified clinical medical device.<br>• Test results carry no official medical diagnostic validity and must not be used for formal medical diagnosis, disability claims, military fitness, or legal/insurance purposes.<br>• Data depends on consumer headphone responses, audio DAC linearity, and ambient noise levels, intended solely for self-tracking.<br>• If you experience sudden hearing deterioration, continuous tinnitus, vertigo, or ear pain, consult a qualified ENT physician and certified audiologist immediately.',
+    disclaimerSectionLicenseTitle: '3. Open Source License & Non-Commercial Notice (CC BY-NC 4.0)',
+    disclaimerSectionLicenseContent: '• Authored by rain3d and distributed on GitHub under the Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0).<br>• Free for personal self-monitoring and academic research; unauthorized commercial use, paid audiometric services, or commercial bundling is strictly prohibited.',
+    disclaimerBtnAgree: '✅ I Have Read & Agree to the Terms (Enter Tool)',
+    disclaimerBtnDecline: '❌ Disagree & Exit',
+    disclaimerExitNotice: '🛑 You have declined the terms. The audiometry tool has been closed.<br><br>Please close this browser tab.<br><span style="font-size:12px;color:#94a3b8;">(If you change your mind, reload this page and accept the agreement to start testing)</span>'
   }
 };
 
@@ -448,11 +487,12 @@ export function setLanguage(lang) {
     }
   });
 
-  // Update select dropdown value if present
-  const langSelect = document.getElementById('lang-select');
-  if (langSelect && langSelect.value !== lang) {
-    langSelect.value = lang;
-  }
+  // Update select dropdown values if present
+  document.querySelectorAll('#lang-select, #disclaimer-lang-select, .lang-selector').forEach((sel) => {
+    if (sel && sel.value !== lang) {
+      sel.value = lang;
+    }
+  });
 
   // Dispatch custom event
   window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang } }));

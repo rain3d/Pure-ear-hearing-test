@@ -381,6 +381,15 @@ public class MainViewModel : ViewModelBase
     public ICommand RestartTestCommand { get; }
     public ICommand SkipCountdownCommand { get; }
     public ICommand CopyLeftToRightSplCommand { get; }
+    public ICommand AcceptDisclaimerCommand { get; }
+    public ICommand DeclineDisclaimerCommand { get; }
+
+    private bool _isDisclaimerAccepted = false;
+    public bool IsDisclaimerAccepted
+    {
+        get => _isDisclaimerAccepted;
+        set => SetProperty(ref _isDisclaimerAccepted, value);
+    }
 
     public MainViewModel()
     {
@@ -474,6 +483,9 @@ public class MainViewModel : ViewModelBase
             CalibratorMeasuredSplRight = CalibratorMeasuredSplLeft;
             CalibratorStatusText = "已將左耳實測讀數複製至右耳。";
         });
+
+        AcceptDisclaimerCommand = new RelayCommand(() => IsDisclaimerAccepted = true);
+        DeclineDisclaimerCommand = new RelayCommand(() => Application.Current?.Shutdown());
 
         _ = LoadHistoryAsync();
 
