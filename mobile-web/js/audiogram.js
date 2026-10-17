@@ -3,7 +3,8 @@
  * Right Ear: Red 'O' with solid red connecting line
  * Left Ear: Blue 'X' with dashed blue connecting line
  * Normal Hearing Range (0 ~ 25 dB HL) highlighted
-import { t } from './i18n.js';
+ */
+import { t } from './i18n.js?v=11';
 
 export class AudiogramRenderer {
   constructor(canvas) {

@@ -1,5 +1,5 @@
-// Service Worker for Offline Hearing Test PWA (v7 - Multi-Language i18n)
-const CACHE_NAME = 'hearing-test-pwa-v7-i18n';
+// Service Worker for Offline Hearing Test PWA (v8 - Multi-Language i18n & syntax fix)
+const CACHE_NAME = 'hearing-test-pwa-v8-i18n';
 const ASSETS = [
   './',
   './index.html',

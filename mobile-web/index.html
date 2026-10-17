@@ -460,6 +460,17 @@
     </nav>
   </div>
 
-  <script type="module" src="js/app.js?v=10"></script>
+  <script type="module">
+    import { initI18n, setLanguage } from './js/i18n.js?v=11';
+    window.setLanguage = setLanguage;
+    initI18n();
+    const select = document.getElementById('lang-select');
+    if (select) {
+      select.addEventListener('change', (e) => {
+        setLanguage(e.target.value);
+      });
+    }
+  </script>
+  <script type="module" src="js/app.js?v=11"></script>
 </body>
 </html>
