@@ -111,7 +111,28 @@ export const translations = {
     // Canvas
     canvasNormalBand: '正常聽力範圍 (0 ~ 25 dB HL)',
     canvasFreqAxis: '頻率 Frequency (Hz)',
-    canvasDbAxis: '聽力級 (dB HL)'
+    canvasDbAxis: '聽力級 (dB HL)',
+
+    // Additional UI & Guidelines
+    iphoneSilentWarning: '⚠️ <strong>iPhone / 手機無聲排查</strong>：請確認手機左側<strong>實體靜音開關已關閉</strong>（不可顯示橘色點），並確認手機「媒體音量」已開啟。',
+    testProtocolTitle: '📋 受測重要指引',
+    testProtocolDesc: '• <strong>刺激時間</strong>：每音實體播放 2 秒，反應確認視窗共 3 秒。<br>• <strong>對照靜音</strong>：測驗中隨機穿插「對照靜音試驗 (無聲)」，請確實聽見聲音再按鍵，避免盲猜。<br>• <strong>隨機間隔</strong>：每音之間隨機靜音 1 ~ 3 秒空白停留，徹底打破節奏盲猜。<br>• <strong>聽到即按</strong>：只要隱約聽見聲音，請立即按下綠色【我聽到了】大按鈕（發聲中按下會瞬間中斷）。<br>• <strong>嚴禁盲猜</strong>：靜音空白或對照靜音時盲按會觸發震動警告並記錄假陽性。<br>• <strong>系統音量</strong>：測驗前請將手機音量固定在 50%~70%，測驗中切勿更動。',
+    footerLicenseNotice: '⚖️ <strong>CC BY-NC 4.0</strong> | 作者：<a href="https://github.com/rain3d" target="_blank" style="color: #38bdf8; text-decoration: none;">rain3d</a><br>個人與學術研究免費自由使用，嚴禁任何未授權商業營利行為。',
+    patientCleanBadge: '受測者純淨盲測模式',
+    btnEmergencyStopShort: '🛑 緊急停止',
+    btnScrollToMonitor: '▲ 往上滑看監控',
+    patientCleanNote: '手機可交由受測者單手操作 • 施測者可隨時往上滑動查閱即時數據',
+    completedNoticeTakeOff: '<strong>請摘下耳機</strong>，並於座位上稍候休息。',
+    completedNoticeReport: '系統已為您產出純音均值 (PTA) 與聽力圖數據供解說與參考。',
+    legendRightEar: '● 右耳 (O)',
+    legendLeftEar: '✕ 左耳 (X)',
+    calibSelectEarLabel: '選擇發聲耳機單體：',
+    calibEarLeft: '左耳單體 (Left Channel)',
+    calibEarRight: '右耳單體 (Right Channel)',
+    calibPlayRefTone: '🔊 播放 1000Hz 參考音',
+    calibStopTone: '⏹️ 停止',
+    calibSplLeftLabel: '左耳實測 (dB SPL)',
+    calibSplRightLabel: '右耳實測 (dB SPL)'
   },
 
   'zh-CN': {
@@ -222,7 +243,28 @@ export const translations = {
     // Canvas
     canvasNormalBand: '正常听力范围 (0 ~ 25 dB HL)',
     canvasFreqAxis: '频率 Frequency (Hz)',
-    canvasDbAxis: '听力级 (dB HL)'
+    canvasDbAxis: '听力级 (dB HL)',
+
+    // Additional UI & Guidelines
+    iphoneSilentWarning: '⚠️ <strong>iPhone / 手机无声排查</strong>：请确认手机左侧<strong>实体静音开关已关闭</strong>（不可显示橙色点），并确认手机“媒体音量”已开启。',
+    testProtocolTitle: '📋 受测重要指引',
+    testProtocolDesc: '• <strong>刺激时间</strong>：每音实体播放 2 秒，反应确认窗口共 3 秒。<br>• <strong>对照静音</strong>：测试中随机穿插“对照静音试验 (无声)”，请切实听见声音再按键，避免盲猜。<br>• <strong>随机间隔</strong>：每音之间随机静音 1 ~ 3 秒空白停留，彻底打破节奏盲猜。<br>• <strong>听到即按</strong>：只要隐约听见声音，请立即按下绿色【我听到了】大按钮（发声中按下会瞬间中断）。<br>• <strong>严禁盲猜</strong>：静音空白或对照静音时盲按会触发震动警告并记录假阳性。<br>• <strong>系统音量</strong>：测试前请将手机音量固定在 50%~70%，测试中切勿变动。',
+    footerLicenseNotice: '⚖️ <strong>CC BY-NC 4.0</strong> | 作者：<a href="https://github.com/rain3d" target="_blank" style="color: #38bdf8; text-decoration: none;">rain3d</a><br>个人与学术研究免费自由使用，严禁任何未授权商业营利行为。',
+    patientCleanBadge: '受测者纯净盲测模式',
+    btnEmergencyStopShort: '🛑 紧急停止',
+    btnScrollToMonitor: '▲ 往上滑看监控',
+    patientCleanNote: '手机可交由受测者单手操作 • 施测者可随时往上滑动查阅即时数据',
+    completedNoticeTakeOff: '<strong>请摘下耳机</strong>，并于座位上稍候休息。',
+    completedNoticeReport: '系统已为您产出纯音均值 (PTA) 与听力图数据供解说与参考。',
+    legendRightEar: '● 右耳 (O)',
+    legendLeftEar: '✕ 左耳 (X)',
+    calibSelectEarLabel: '选择发声耳机单体：',
+    calibEarLeft: '左耳单体 (Left Channel)',
+    calibEarRight: '右耳单体 (Right Channel)',
+    calibPlayRefTone: '🔊 播放 1000Hz 参考音',
+    calibStopTone: '⏹️ 停止',
+    calibSplLeftLabel: '左耳实测 (dB SPL)',
+    calibSplRightLabel: '右耳实测 (dB SPL)'
   },
 
   'en-US': {
@@ -333,7 +375,28 @@ export const translations = {
     // Canvas
     canvasNormalBand: 'Normal Range (0 ~ 25 dB HL)',
     canvasFreqAxis: 'Frequency (Hz)',
-    canvasDbAxis: 'Hearing Level (dB HL)'
+    canvasDbAxis: 'Hearing Level (dB HL)',
+
+    // Additional UI & Guidelines
+    iphoneSilentWarning: '⚠️ <strong>iPhone / Audio Troubleshooting</strong>: Ensure the physical silent switch on the side is <strong>turned OFF</strong> (no orange dot showing), and your device media volume is turned on.',
+    testProtocolTitle: '📋 Important Testing Guidelines',
+    testProtocolDesc: '• <strong>Tone Duration</strong>: Each tone plays for 2s, with a 3s total response window.<br>• <strong>Silent Catch Trials</strong>: Silent trials are randomly inserted—only press when you actually hear a tone, avoid guessing.<br>• <strong>Random Intervals</strong>: Random 1~3s pauses between tones eliminate rhythmic pattern guessing.<br>• <strong>Press When Heard</strong>: Press the large green [I Hear It] button as soon as you detect a tone.<br>• <strong>Do Not Guess</strong>: Guessing during pauses or silent trials triggers vibration warnings and logs false positives.<br>• <strong>Volume Setting</strong>: Keep system volume fixed at 50%~70% throughout the test; do not adjust during testing.',
+    footerLicenseNotice: '⚖️ <strong>CC BY-NC 4.0</strong> | Author: <a href="https://github.com/rain3d" target="_blank" style="color: #38bdf8; text-decoration: none;">rain3d</a><br>Free for personal and academic research use; unauthorized commercial use strictly prohibited.',
+    patientCleanBadge: 'Patient Blind Testing Mode',
+    btnEmergencyStopShort: '🛑 Emergency Stop',
+    btnScrollToMonitor: '▲ Swipe Up for Monitor',
+    patientCleanNote: 'Handheld operation by patient • Operator can swipe up anytime to view real-time data',
+    completedNoticeTakeOff: '<strong>Please remove headphones</strong> and relax in your seat.',
+    completedNoticeReport: 'Pure-Tone Average (PTA) and audiogram data have been generated for review.',
+    legendRightEar: '● Right Ear (O)',
+    legendLeftEar: '✕ Left Ear (X)',
+    calibSelectEarLabel: 'Select Earphone Channel:',
+    calibEarLeft: 'Left Channel',
+    calibEarRight: 'Right Channel',
+    calibPlayRefTone: '🔊 Play 1000Hz Reference Tone',
+    calibStopTone: '⏹️ Stop',
+    calibSplLeftLabel: 'Left Measured (dB SPL)',
+    calibSplRightLabel: 'Right Measured (dB SPL)'
   }
 };
 
@@ -366,6 +429,14 @@ export function setLanguage(lang) {
     const key = el.getAttribute('data-i18n');
     if (key && translations[lang][key] !== undefined) {
       el.textContent = translations[lang][key];
+    }
+  });
+
+  // Update elements with data-i18n-html
+  document.querySelectorAll('[data-i18n-html]').forEach((el) => {
+    const key = el.getAttribute('data-i18n-html');
+    if (key && translations[lang][key] !== undefined) {
+      el.innerHTML = translations[lang][key];
     }
   });
 

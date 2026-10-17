@@ -130,15 +130,15 @@
         </div>
 
         <!-- iPhone Silent Switch Warning -->
-        <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 8px; padding: 8px 10px; margin-top: 10px; font-size: 11px; color: #fbbf24; line-height: 1.5;">
+        <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 8px; padding: 8px 10px; margin-top: 10px; font-size: 11px; color: #fbbf24; line-height: 1.5;" data-i18n-html="iphoneSilentWarning">
           ⚠️ <strong>iPhone / 手機無聲排查</strong>：請確認手機左側<strong>實體靜音開關已關閉</strong>（不可顯示橘色點），並確認手機「媒體音量」已開啟。
         </div>
       </div>
 
       <!-- Test Protocol Rules Card -->
       <div class="card">
-        <div class="card-title">📋 受測重要指引</div>
-        <div class="card-desc" style="line-height: 1.7;">
+        <div class="card-title" data-i18n="testProtocolTitle">📋 受測重要指引</div>
+        <div class="card-desc" style="line-height: 1.7;" data-i18n-html="testProtocolDesc">
           • <strong>刺激時間</strong>：每音實體播放 2 秒，反應確認視窗共 3 秒。<br>
           • <strong>對照靜音</strong>：測驗中隨機穿插「對照靜音試驗 (無聲)」，請確實聽見聲音再按鍵，避免盲猜。<br>
           • <strong>隨機間隔</strong>：每音之間隨機靜音 1 ~ 3 秒空白停留，徹底打破節奏盲猜。<br>
@@ -158,7 +158,7 @@
       </div>
 
       <!-- Open Source License Notice -->
-      <div style="margin-top: 20px; padding: 12px 14px; background: #0c1220; border: 1px solid #1e293b; border-radius: 8px; font-size: 11px; color: #64748b; text-align: center; line-height: 1.5;">
+      <div style="margin-top: 20px; padding: 12px 14px; background: #0c1220; border: 1px solid #1e293b; border-radius: 8px; font-size: 11px; color: #64748b; text-align: center; line-height: 1.5;" data-i18n-html="footerLicenseNotice">
         ⚖️ <strong>CC BY-NC 4.0</strong> | 作者：<a href="https://github.com/rain3d" target="_blank" style="color: #38bdf8; text-decoration: none;">rain3d</a><br>
         個人與學術研究免費自由使用，嚴禁任何未授權商業營利行為。
       </div>
@@ -277,13 +277,13 @@
         <div class="patient-clean-header">
           <div class="patient-clean-badge">
             <span class="patient-dot"></span>
-            <span>受測者純淨盲測模式</span>
+            <span data-i18n="patientCleanBadge">受測者純淨盲測模式</span>
           </div>
           <div style="display: flex; gap: 8px; align-items: center;">
-            <button id="btn-emergency-stop-clean-header" class="btn-emergency-stop-mini" type="button" title="緊急停止測驗">
+            <button id="btn-emergency-stop-clean-header" class="btn-emergency-stop-mini" type="button" title="緊急停止測驗" data-i18n="btnEmergencyStopShort">
               🛑 緊急停止
             </button>
-            <button id="btn-scroll-to-monitor" class="btn-scroll-top" type="button">
+            <button id="btn-scroll-to-monitor" class="btn-scroll-top" type="button" data-i18n="btnScrollToMonitor">
               ▲ 往上滑看監控
             </button>
           </div>
@@ -324,7 +324,7 @@
             <span data-i18n="btnEmergencyStop">🛑 緊急停止測驗 (若感不適請點此)</span>
           </button>
 
-          <div class="patient-clean-note">
+          <div class="patient-clean-note" data-i18n="patientCleanNote">
             手機可交由受測者單手操作 • 施測者可隨時往上滑動查閱即時數據
           </div>
         </div>
@@ -346,11 +346,11 @@
         <div class="completed-notice-box">
           <div class="completed-notice-item">
             <span class="notice-bullet">🎧</span>
-            <span><strong>請摘下耳機</strong>，並於座位上稍候休息。</span>
+            <span data-i18n-html="completedNoticeTakeOff"><strong>請摘下耳機</strong>，並於座位上稍候休息。</span>
           </div>
           <div class="completed-notice-item">
             <span class="notice-bullet">📊</span>
-            <span>系統已為您產出純音均值 (PTA) 與聽力圖數據供解說與參考。</span>
+            <span data-i18n="completedNoticeReport">系統已為您產出純音均值 (PTA) 與聽力圖數據供解說與參考。</span>
           </div>
         </div>
       </div>
@@ -360,8 +360,8 @@
         <div class="card-title" style="display: flex; justify-content: space-between; align-items: center;">
           <span data-i18n="navAudiogram">純音聽力圖 (Audiogram)</span>
           <div style="font-size: 11px; display: flex; gap: 8px;">
-            <span style="color: #ef4444; font-weight: bold;">● 右耳 (O)</span>
-            <span style="color: #38bdf8; font-weight: bold;">✕ 左耳 (X)</span>
+            <span style="color: #ef4444; font-weight: bold;" data-i18n="legendRightEar">● 右耳 (O)</span>
+            <span style="color: #38bdf8; font-weight: bold;" data-i18n="legendLeftEar">✕ 左耳 (X)</span>
           </div>
         </div>
         
@@ -411,25 +411,25 @@
         </div>
 
         <div style="margin-bottom: 14px;">
-          <label style="font-size: 12px; color: #94a3b8; display: block; margin-bottom: 6px;">選擇發聲耳機單體：</label>
+          <label style="font-size: 12px; color: #94a3b8; display: block; margin-bottom: 6px;" data-i18n="calibSelectEarLabel">選擇發聲耳機單體：</label>
           <select id="calib-ear-select" style="width: 100%; padding: 10px; background: #090d16; color: #fff; border: 1px solid #334155; border-radius: 8px;">
-            <option value="Left">左耳單體 (Left Channel)</option>
-            <option value="Right">右耳單體 (Right Channel)</option>
+            <option value="Left" data-i18n="calibEarLeft">左耳單體 (Left Channel)</option>
+            <option value="Right" data-i18n="calibEarRight">右耳單體 (Right Channel)</option>
           </select>
         </div>
 
         <div style="display: flex; gap: 8px; margin-bottom: 16px;">
-          <button id="btn-play-calib" class="btn-primary" style="background: #10b981; flex: 1; padding: 12px; font-size: 14px;">🔊 播放 1000Hz 參考音</button>
-          <button id="btn-stop-calib" class="btn-primary" style="background: #ef4444; width: 80px; padding: 12px; font-size: 14px;">⏹️ 停止</button>
+          <button id="btn-play-calib" class="btn-primary" style="background: #10b981; flex: 1; padding: 12px; font-size: 14px;" data-i18n="calibPlayRefTone">🔊 播放 1000Hz 參考音</button>
+          <button id="btn-stop-calib" class="btn-primary" style="background: #ef4444; width: 80px; padding: 12px; font-size: 14px;" data-i18n="calibStopTone">⏹️ 停止</button>
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px;">
           <div>
-            <label style="font-size: 11px; color: #94a3b8;">左耳實測 (dB SPL)</label>
+            <label style="font-size: 11px; color: #94a3b8;" data-i18n="calibSplLeftLabel">左耳實測 (dB SPL)</label>
             <input id="input-spl-left" type="number" value="70.0" step="0.5" style="width: 100%; padding: 8px; background: #090d16; color: #fff; border: 1px solid #334155; border-radius: 8px; font-weight: bold; font-size: 15px; margin-top: 4px;">
           </div>
           <div>
-            <label style="font-size: 11px; color: #94a3b8;">右耳實測 (dB SPL)</label>
+            <label style="font-size: 11px; color: #94a3b8;" data-i18n="calibSplRightLabel">右耳實測 (dB SPL)</label>
             <input id="input-spl-right" type="number" value="70.0" step="0.5" style="width: 100%; padding: 8px; background: #090d16; color: #fff; border: 1px solid #334155; border-radius: 8px; font-weight: bold; font-size: 15px; margin-top: 4px;">
           </div>
         </div>
@@ -474,7 +474,7 @@
   </div>
 
   <script type="module">
-    import { initI18n, setLanguage } from './js/i18n.js?v=11';
+    import { initI18n, setLanguage } from './js/i18n.js?v=12';
     window.setLanguage = setLanguage;
     initI18n();
     const select = document.getElementById('lang-select');
@@ -484,6 +484,6 @@
       });
     }
   </script>
-  <script type="module" src="js/app.js?v=11"></script>
+  <script type="module" src="js/app.js?v=12"></script>
 </body>
 </html>

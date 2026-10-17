@@ -5,11 +5,11 @@
 // 免費提供個人自主監測與非營利學術研究使用；嚴格禁止任何商業營利與付費銷售用途。
 // ============================================================================
 
-import { AudioEngine } from './audio-engine.js?v=11';
-import { Calibrator } from './calibrator.js?v=11';
-import { AudiometryStateMachine } from './state-machine.js?v=11';
-import { AudiogramRenderer } from './audiogram.js?v=11';
-import { t, initI18n, setLanguage, getCurrentLanguage } from './i18n.js?v=11';
+import { AudioEngine } from './audio-engine.js?v=12';
+import { Calibrator } from './calibrator.js?v=12';
+import { AudiometryStateMachine } from './state-machine.js?v=12';
+import { AudiogramRenderer } from './audiogram.js?v=12';
+import { t, initI18n, setLanguage, getCurrentLanguage } from './i18n.js?v=12';
 
 class HearingTestApp {
   constructor() {
@@ -125,6 +125,10 @@ class HearingTestApp {
         setLanguage(e.target.value);
       });
     }
+
+    window.addEventListener('languageChanged', () => {
+      this.updateAudioStatus();
+    });
 
     // Global First-Touch / First-Click Audio Unlocker
     const triggerGlobalUnlock = () => {
@@ -330,10 +334,10 @@ class HearingTestApp {
     if (this.audioStatusText) {
       const isRunning = this.audio.ctx && this.audio.ctx.state === 'running';
       if (isRunning) {
-        this.audioStatusText.innerHTML = '🟢 音訊引擎已就緒 (已連線)';
+        this.audioStatusText.textContent = t('audioReadyPrompt', '🟢 音訊核心已就緒');
         this.audioStatusText.style.color = '#10b981';
       } else {
-        this.audioStatusText.innerHTML = '🟡 輕觸螢幕解鎖音訊';
+        this.audioStatusText.textContent = t('audioUnlockPrompt', '🟡 輕觸螢幕解鎖音訊');
         this.audioStatusText.style.color = '#f59e0b';
       }
     }
