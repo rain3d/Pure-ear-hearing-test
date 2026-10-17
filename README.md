@@ -17,6 +17,24 @@
 
 ---
 
+### 軟體介面預覽 (UI Preview)
+
+<p align="center">
+  <img src="docs/images/desktop-dashboard.png" alt="Desktop Dashboard UI" width="850">
+</p>
+<p align="center">
+  <em>桌面端控制台介面（支援雙螢幕操作、繁中/簡中/英文即時熱切換、安全互鎖與電聲校正）</em>
+</p>
+
+<p align="center">
+  <img src="docs/images/mobile-preview.png" alt="Mobile Web PWA UI" width="340">
+</p>
+<p align="center">
+  <em>手機端 Web PWA 介面（支援手機瀏覽器免安裝、對照靜音防盲猜、雷達脈衝與大按鍵反應）</em>
+</p>
+
+---
+
 ### 1. 快速開始 (Quick Start)
 
 1. **直接啟動**：在資料夾內直接雙擊 `HearingTest.exe` 即可啟動（無黑色命令提示字元 Console 視窗，桌面與工作列顯示專用聽力波形圖示）。
@@ -104,6 +122,24 @@
 > **Distribution Type**: Self-Contained Standalone Portable Edition (Built-in runtime; zero external installation dependencies)  
 > **License**: [CC BY-NC 4.0 (Non-Commercial / Free for Personal Use)](#5-open-source-license--non-commercial-notice)  
 > **Regulatory Classification**: Research / Personal Hearing Trend Tracking Tool (Non-medical device / Not for formal clinical diagnosis)
+
+---
+
+### User Interface Preview
+
+<p align="center">
+  <img src="docs/images/desktop-dashboard.png" alt="Desktop Dashboard UI" width="850">
+</p>
+<p align="center">
+  <em>Desktop Operator Console (Supports dual-screen setup, real-time zh-TW/zh-CN/en-US switching, safety interlocks, and electroacoustic calibration)</em>
+</p>
+
+<p align="center">
+  <img src="docs/images/mobile-preview.png" alt="Mobile Web PWA UI" width="340">
+</p>
+<p align="center">
+  <em>Mobile Web PWA Interface (Zero-install browser app, silent catch trial anti-guessing, radar pulse, and giant response button)</em>
+</p>
 
 ---
 
