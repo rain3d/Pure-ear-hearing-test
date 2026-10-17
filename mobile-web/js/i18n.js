@@ -30,7 +30,9 @@ export const translations = {
     btnTestLeftMask: '🎧 左耳純音+右耳遮蔽',
     btnTestRightMask: '🎧 右耳純音+左耳遮蔽',
 
-    // Research Statement
+    // Research Statement & Safety Warning
+    safetyWarningTitle: '⚠️ 安全警語與免責聲明 (聽力保護重要須知)',
+    safetyWarningDesc: '【音量保護原則】：測試前請務必「先將耳機音量調至低音量」再開始測試，切勿以過高音量直接施測，以防突發大音量損害聽力！【免責權與用途聲明】：本工具僅供個人日常聽力趨勢自我追蹤與科學研究，非臨床醫療器材亦無正式醫療診斷效力。若有突發性耳鳴或聽力異常，請立即諮詢耳鼻喉科專科醫師。',
     disclaimerTitle: '📋 研究與自我追蹤聲明',
     disclaimerDesc: '本系統僅供聽力科學研究與個人聽閾追蹤，非臨床醫療診斷器材。如自覺聽力衰退或單耳突發性耳鳴，請速至各大醫院耳鼻喉科就診。',
 
@@ -139,7 +141,9 @@ export const translations = {
     btnTestLeftMask: '🎧 左耳纯音+右耳掩蔽',
     btnTestRightMask: '🎧 右耳纯音+左耳掩蔽',
 
-    // Research Statement
+    // Research Statement & Safety Warning
+    safetyWarningTitle: '⚠️ 安全警语与免责声明 (听力保护重要须知)',
+    safetyWarningDesc: '【音量保护原则】：测试前请务必「先将耳机音量调至低音量」再开始测试，切勿以过高音量直接施测，以防突发大音量损害听力！【免责权与用途声明】：本工具仅供个人日常听力趋势自我追踪与科学研究，非临床医疗器材亦无正式医疗诊断效力。若有突发性耳鸣或听力异常，请立即咨询耳鼻喉科专科医师。',
     disclaimerTitle: '📋 研究与自我追踪声明',
     disclaimerDesc: '本系统仅供听力科学研究与个人听阈追踪，非临床医疗诊断器材。如自觉听力衰退或单耳突发性耳鸣，请速至各大医院耳鼻喉科就诊。',
 
@@ -248,7 +252,9 @@ export const translations = {
     btnTestLeftMask: '🎧 Left Tone + Right Mask',
     btnTestRightMask: '🎧 Right Tone + Left Mask',
 
-    // Research Statement
+    // Research Statement & Safety Warning
+    safetyWarningTitle: '⚠️ Safety Warning & Legal Disclaimer (Hearing Protection Notice)',
+    safetyWarningDesc: '[Volume Protection Rule]: Always turn down your headphone volume to a low level before starting the test. Never begin tests at high volume to prevent acoustic trauma! [Disclaimer & Intended Use]: This tool is strictly for personal hearing trend monitoring and research purposes; it is not a certified medical device and carries no clinical diagnostic validity. Consult an ENT physician if you experience hearing issues.',
     disclaimerTitle: '📋 Research & Personal Tracking Notice',
     disclaimerDesc: 'This tool is designed for hearing science research and personal threshold monitoring only, not as a diagnostic medical device. If you experience hearing loss or tinnitus, consult an ENT specialist.',
 

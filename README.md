@@ -84,6 +84,10 @@
 
 ### 3. 安全規格與白名單限制
 
+> ⚠️ **【重要聽力保護安全警語】**
+> - **耳機音量務必先調低再行測試**：受測者於每次戴上耳機施測前，**請務必先將作業系統、耳機擴大器或播放設備之音量旋鈕調至「低音量」狀態**。切勿在系統處於高音量或未知音量下直接啟動測驗，以防突發大音量刺激造成急性聽力創傷 (Acoustic Trauma) 或聽力受損！
+> - 測驗開始後，可透過「測前試聽」確認聲音清晰舒適（建議維持系統實體音量約 50%~70%），施測全程請勿再隨意更動音量旋鈕。
+
 - **測試頻率白名單**：嚴格鎖定於 250, 500, 1000, 2000, 4000, 8000 Hz。
 - **測試強度白名單**：硬限制於 **0 ~ 50 dB HL**，每階固定 **5 dB**；數位音訊層硬限制於 **-10.0 dBFS**。
 - **開關瞬態保護**：全訊號（純音與遮蔽噪音）皆套用 25 ms Raised-Cosine（升降餘弦）平滑窗，消除高頻爆音 (Click/Thump)。
@@ -91,9 +95,13 @@
 
 ---
 
-### 4. 法規聲明與免責條款
+### 4. 法規聲明與免責條款 (Disclaimer & Intended Use)
 
-在電聲校正、標準計量檢驗與各國醫療器材許可完成前，本工具依據原廠規格僅作為「純音聽力研究／個人追蹤工具」，不得宣稱等同醫院診斷型聽力計，亦不可用於正式自我診斷、役男體檢判定、工作能力審查、法律訴訟或醫療處方依據。若受測結果疑似異常，應諮詢耳鼻喉科（ENT）專科醫師與合格聽力師進行正式標準檢查。
+> ⚖️ **【舊式工具免責權與非醫療器材聲明】**
+> 本工具為依循 ISO 8253-1 臨床純音聽閾測試邏輯所研發之純音聽力研究與個人健康自我追蹤輔助軟體，**並非主管機關查驗核准之臨床醫療器材，亦不具備任何正式法律效力與醫療診斷處方權限**。
+> 1. 本工具之量測數值受各廠牌耳機頻響曲線、系統音量增益與環境背景噪音影響，結果僅供個人聽力趨勢長期自我比對與學術交流參考。
+> 2. 嚴禁用於正式醫療診斷、保險理賠、兵役體檢認定或職業勞保失能判定。
+> 3. 若受測者自覺有急性單側聽力衰退、持續性高頻耳鳴、眩暈或耳朵疼痛等症狀，應立即前往醫院耳鼻喉科（ENT）專科門診尋求合格醫師與聽力師之正式診斷與治療。
 
 ---
 
@@ -192,6 +200,10 @@
 
 ### 3. Safety Specifications & Whitelist Safeguards
 
+> ⚠️ **[Important Hearing Protection & Safety Notice]**
+> - **Always Lower Headphone Volume Prior to Testing**: Before putting on headphones and initiating any testing procedure, **always make sure your OS, headphone amplifier, or sound device master volume is set to a LOW level first**. Never initiate testing at high or unverified volume levels to prevent accidental loud stimulus causing acute acoustic trauma or hearing damage!
+> - Use the "Pre-test Sound Check" to confirm tones are comfortable and audible (keeping master physical volume around 50%~70%), and do not alter physical volume knobs during testing.
+
 - **Frequency Whitelist**: Strictly locked to 250, 500, 1000, 2000, 4000, and 8000 Hz.
 - **Intensity Whitelist**: Hard-capped between **0 and 50 dB HL** in **5 dB** fixed steps; digital audio layer hard-clamped at **-10.0 dBFS**.
 - **Transient Switching Protection**: All audio signals (pure tones and masking noise) apply a 25 ms Raised-Cosine smoothing window to eliminate high-frequency clicks and thumps.
@@ -199,9 +211,13 @@
 
 ---
 
-### 4. Regulatory Notice & Disclaimer
+### 4. Regulatory Notice & Disclaimer (Intended Use)
 
-Pending electroacoustic calibration certification, standard metrological verification, and medical device regulatory clearance in relevant jurisdictions, this software is classified strictly as a **"Pure-Tone Hearing Research and Personal Trend Tracking Tool"**. It must not be claimed as equivalent to a clinical diagnostic audiometer, nor used for formal self-diagnosis, military medical evaluations, occupational fitness determinations, legal disputes, or medical prescription purposes. Individuals suspecting hearing abnormalities should consult an ear, nose, and throat (ENT) specialist physician and a certified audiologist for formal clinical examinations.
+> ⚖️ **[Tool Disclaimer & Non-Medical Device Notice]**
+> This utility is an open-source assistive application implementing ISO 8253-1 clinical pure-tone audiometry protocols designed solely for hearing research and personal wellness tracking. **It is NOT a certified clinical medical device, holds no regulatory medical approval, and carries no legal or diagnostic validity.**
+> 1. Results depend on consumer headphone frequency responses, sound card DAC linearity, and ambient noise levels. They are intended strictly for personal long-term trend comparisons.
+> 2. Strictly prohibited for formal medical diagnoses, disability certification, military evaluations, or insurance compensation claims.
+> 3. If you experience sudden hearing deterioration, continuous tinnitus, dizziness, or ear discomfort, consult a qualified ENT physician and certified audiologist immediately for standard clinical evaluation.
 
 ---
 

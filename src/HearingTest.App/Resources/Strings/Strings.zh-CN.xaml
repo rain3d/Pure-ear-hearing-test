@@ -15,6 +15,8 @@
     <sys:String x:Key="Str_HardwareStatusTitle">系统环境与电声链配置状态</sys:String>
     <sys:String x:Key="Str_HardwareStatusDesc">音频驱动：WASAPI Exclusive (48 kHz / 24-bit)  |  耳机指纹：封闭式监听耳机 (未校准研究模式)  |  非医疗用途声明生效中</sys:String>
     <sys:String x:Key="Str_SimulatedPatientCheck">启用虚拟受试者自动应答 (模拟演练模式)</sys:String>
+    <sys:String x:Key="Str_SafetyWarningTitle">安全警语与免责声明 (听力保护重要须知)</sys:String>
+    <sys:String x:Key="Str_SafetyWarningDesc">【音量安全保护原则】：测试前请务必「先将耳机音量调至低音量」再开始测试，切勿以过高音量直接施测，以防突发大音量损害听力！&#x0a;【免责权与用途声明】：本工具仅供个人日常听力趋势自我追踪与科学研究，非临床医疗器材亦无正式医疗诊断效力。若有突发性耳鸣、听力急剧下降或病理疑虑，应立即咨询耳鼻喉科（ENT）专科医师进行正式临床检查。</sys:String>
 
     <sys:String x:Key="Str_StartSixFreqTest">开始标准六频测试</sys:String>
     <sys:String x:Key="Str_StartSixFreqDesc">250, 500, 1000, 2000, 4000, 8000 Hz 左右耳自动寻阈流程</sys:String>

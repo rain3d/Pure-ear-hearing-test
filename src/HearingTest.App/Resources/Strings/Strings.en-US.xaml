@@ -15,6 +15,8 @@
     <sys:String x:Key="Str_HardwareStatusTitle">System Environment &amp; Electroacoustic Chain</sys:String>
     <sys:String x:Key="Str_HardwareStatusDesc">Audio Driver: WASAPI Exclusive (48 kHz / 24-bit)  |  Headphone Fingerprint: Closed-Back Monitor  |  Non-Medical Disclaimer Active</sys:String>
     <sys:String x:Key="Str_SimulatedPatientCheck">Enable Virtual Patient Auto-Response (Simulation Mode)</sys:String>
+    <sys:String x:Key="Str_SafetyWarningTitle">Safety Warning &amp; Legal Disclaimer (Hearing Protection Notice)</sys:String>
+    <sys:String x:Key="Str_SafetyWarningDesc">【Volume Safety Rule】: Always ensure headphone/system volume is TURNED DOWN TO A LOW LEVEL before starting tests. Never present tones at high volume to prevent acoustic trauma!&#x0a;【Disclaimer &amp; Intended Use】: This tool is strictly designed for personal hearing trend monitoring and research purposes; it is not a certified medical device and carries no clinical diagnostic validity. If you experience sudden hearing decline, tinnitus, or medical concerns, immediately consult an Ear, Nose &amp; Throat (ENT) specialist.</sys:String>
 
     <sys:String x:Key="Str_StartSixFreqTest">Start Standard 6-Frequency Test</sys:String>
     <sys:String x:Key="Str_StartSixFreqDesc">250, 500, 1000, 2000, 4000, 8000 Hz Left &amp; Right Ear Automatic Threshold Protocol</sys:String>

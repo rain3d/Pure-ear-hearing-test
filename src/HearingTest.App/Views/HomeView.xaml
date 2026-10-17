@@ -67,6 +67,23 @@
                 </Grid>
             </Border>
 
+            <!-- Safety Volume Warning & Disclaimer Alert Banner -->
+            <Border Background="#1E190E" BorderBrush="#D97706" BorderThickness="1.5" CornerRadius="12" Padding="18,14" Margin="0,0,0,24">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Background="#451A03" BorderBrush="#B45309" BorderThickness="1" CornerRadius="8" Width="40" Height="40" Margin="0,0,16,0" VerticalAlignment="Center">
+                        <TextBlock Text="⚠️" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        <TextBlock Text="{DynamicResource Str_SafetyWarningTitle}" FontSize="14" FontWeight="Bold" Foreground="#FBBF24"/>
+                        <TextBlock Text="{DynamicResource Str_SafetyWarningDesc}" FontSize="12" Foreground="#FDE68A" Margin="0,5,0,0" TextWrapping="Wrap" LineHeight="18"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
             <!-- Quick Action Hero Cards -->
             <Grid Margin="0,0,0,28">
                 <Grid.ColumnDefinitions>
