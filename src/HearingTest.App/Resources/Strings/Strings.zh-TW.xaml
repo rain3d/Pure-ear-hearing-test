@@ -1,0 +1,175 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <!-- App & Brand -->
+    <sys:String x:Key="Str_AppTitle">專業純音聽力測驗系統</sys:String>
+    <sys:String x:Key="Str_AppSubtitle">Pure-Tone Audiometry Clinical &amp; Research Platform</sys:String>
+    <sys:String x:Key="Str_AppWindowTitle">專業純音聽力測驗系統 (Pure-Tone Audiometry) v1.0.0 - [研究/個人追蹤版 - 非醫療診斷]</sys:String>
+    <sys:String x:Key="Str_PatientWindowTitle">純音聽力測驗 - 受測者專用視窗</sys:String>
+    <sys:String x:Key="Str_LanguageLabel">介面語系</sys:String>
+
+    <!-- Home View -->
+    <sys:String x:Key="Str_CalibrationBadgeValid">校正狀態：有效 (已驗證)</sys:String>
+    <sys:String x:Key="Str_CalibrationBadgeInvalid">校正狀態：未校正 (研究模式)</sys:String>
+    <sys:String x:Key="Str_SafeInterlockBadge">安全互鎖：0~50 dB HL (已鎖定)</sys:String>
+    <sys:String x:Key="Str_HardwareStatusTitle">系統環境與電聲鏈配置狀態</sys:String>
+    <sys:String x:Key="Str_HardwareStatusDesc">音訊驅動：WASAPI Exclusive (48 kHz / 24-bit)  |  耳機指紋：封閉式監聽耳機 (未校正研究模式)  |  非醫療用途聲明生效中</sys:String>
+    <sys:String x:Key="Str_SimulatedPatientCheck">啟用虛擬受測者自動應答 (模擬演練模式)</sys:String>
+
+    <sys:String x:Key="Str_StartSixFreqTest">開始標準六頻測驗</sys:String>
+    <sys:String x:Key="Str_StartSixFreqDesc">250, 500, 1000, 2000, 4000, 8000 Hz 左右耳自動尋閾流程</sys:String>
+    <sys:String x:Key="Str_StartQuickVerification">個人複測預設 (LeftEarVerification)</sys:String>
+    <sys:String x:Key="Str_StartQuickVerificationDesc">載入左耳歷史預估值對照 (500Hz:20dB, 1000Hz:40dB, 2000Hz:30dB)</sys:String>
+
+    <sys:String x:Key="Str_OpenPatientScreen">開啟受測者獨立視窗 (副螢幕)</sys:String>
+    <sys:String x:Key="Str_OpenPatientScreenDesc">雙螢幕盲測模式，隱藏分貝與頻率數值</sys:String>
+    <sys:String x:Key="Str_OpenCalibration">設備與聲學校正管理</sys:String>
+    <sys:String x:Key="Str_OpenCalibrationDesc">硬體指紋綁定、RETSPL 校正與防竄改驗證</sys:String>
+    <sys:String x:Key="Str_OpenHistory">歷史測驗數據紀錄</sys:String>
+    <sys:String x:Key="Str_OpenHistoryDesc">檢視本機 SQLite 儲存之歷史聽力圖與報告</sys:String>
+
+    <sys:String x:Key="Str_SystemFunctions">系統功能專區</sys:String>
+    <sys:String x:Key="Str_CardStartTest">開始測驗</sys:String>
+    <sys:String x:Key="Str_CardStartTestDesc">進入操作者即時控制台</sys:String>
+    <sys:String x:Key="Str_CardPatientView">受測者畫面</sys:String>
+    <sys:String x:Key="Str_CardPatientViewDesc">切換至受測者專用無干擾介面</sys:String>
+    <sys:String x:Key="Str_CardHistory">歷史紀錄</sys:String>
+    <sys:String x:Key="Str_CardHistoryDesc">查詢過去測驗聽力圖與報告</sys:String>
+    <sys:String x:Key="Str_CardCalib">校正狀態</sys:String>
+    <sys:String x:Key="Str_CardCalibDesc">硬體指紋比對與電聲校驗</sys:String>
+    <sys:String x:Key="Str_CardAudio">音訊裝置</sys:String>
+    <sys:String x:Key="Str_CardAudioDesc">WASAPI 輸出與左右聲道檢測</sys:String>
+    <sys:String x:Key="Str_CardExport">報告匯出</sys:String>
+    <sys:String x:Key="Str_CardExportDesc">JSON / CSV / 匿名研究資料</sys:String>
+    <sys:String x:Key="Str_CardHome">系統首頁</sys:String>
+    <sys:String x:Key="Str_CardHomeDesc">返回儀表板主控台</sys:String>
+    <sys:String x:Key="Str_CardSpecs">規格與說明</sys:String>
+    <sys:String x:Key="Str_CardSpecsDesc">法規界線與操作標準規範</sys:String>
+
+    <sys:String x:Key="Str_PatientInfoSection">受測者基本資料與測試設定</sys:String>
+    <sys:String x:Key="Str_PatientId">受測者編號 (ID)</sys:String>
+    <sys:String x:Key="Str_PatientAge">年齡 (Age)</sys:String>
+    <sys:String x:Key="Str_PatientGender">性別 (Gender)</sys:String>
+    <sys:String x:Key="Str_GenderMale">男 (Male)</sys:String>
+    <sys:String x:Key="Str_GenderFemale">女 (Female)</sys:String>
+    <sys:String x:Key="Str_GenderOther">未填 (Unspecified)</sys:String>
+    <sys:String x:Key="Str_PatientNotes">臨床備註 (Notes)</sys:String>
+    <sys:String x:Key="Str_PatientNotesPlaceholder">可填寫受測環境、主訴耳鳴或相關病史...</sys:String>
+
+    <sys:String x:Key="Str_ProtocolGuideTitle">ISO 8253-1 / ASHA 標準聽閾搜尋規範</sys:String>
+    <sys:String x:Key="Str_ProtocolGuide1">採用標準 10-down / 5-up 階梯法；於上升序列累計 2 次反應即確立聽閾。</sys:String>
+    <sys:String x:Key="Str_ProtocolGuide2">測試順序：1000 Hz → 2000 Hz → 4000 Hz → 8000 Hz → 1000 Hz (複驗) → 500 Hz → 250 Hz。</sys:String>
+    <sys:String x:Key="Str_ProtocolGuide3">白名單上限為 50 dB HL，達到 50 dB HL 兩次無反應自動記錄為 NR @ 50 dB HL。</sys:String>
+    <sys:String x:Key="Str_ProtocolGuide4">隨機插入對照靜音 (Catch Trial) 偵測假陽性率，確保測試結果高可靠度。</sys:String>
+
+    <!-- Operator Test View -->
+    <sys:String x:Key="Str_ReturnHome">返回首頁</sys:String>
+    <sys:String x:Key="Str_OperatorConsoleTitle">操作者即時測驗控制台</sys:String>
+    <sys:String x:Key="Str_OperatorConsoleSub"> (ISO 8253-1 自動 10-down / 5-up 尋閾)</sys:String>
+    <sys:String x:Key="Str_TestCompleteSummary">🎉 測驗已完成 (查看總結)</sys:String>
+    <sys:String x:Key="Str_ResetUnlock">重設解鎖</sys:String>
+    <sys:String x:Key="Str_EmergencyStopButton">🛑 全域緊急停止 (Esc)</sys:String>
+
+    <sys:String x:Key="Str_ActiveEar">測試耳 (Ear)</sys:String>
+    <sys:String x:Key="Str_EarLeft">左耳 (Left Ear - X)</sys:String>
+    <sys:String x:Key="Str_EarRight">右耳 (Right Ear - O)</sys:String>
+    <sys:String x:Key="Str_ActiveFrequency">當前頻率 (Freq)</sys:String>
+    <sys:String x:Key="Str_ActiveLevel">刺激音量 (Level)</sys:String>
+    <sys:String x:Key="Str_ActiveStatus">狀態 (Status)</sys:String>
+    <sys:String x:Key="Str_CatchTrialLabel">對照靜音 (Catch Trial)</sys:String>
+
+    <sys:String x:Key="Str_MaskingDrawerTitle">對側窄頻遮蔽控制 (Contralateral Masking)</sys:String>
+    <sys:String x:Key="Str_MaskingEnable">啟用對側窄頻遮蔽</sys:String>
+    <sys:String x:Key="Str_MaskingLevel">遮蔽強度 (Level)</sys:String>
+    <sys:String x:Key="Str_ApplyAutoMasking">套用推薦遮蔽值</sys:String>
+    <sys:String x:Key="Str_MaskingWarning">跨耳衰減提示：刺激量與對側耳差值 ≥ 40 dB，建議啟用遮蔽。</sys:String>
+
+    <sys:String x:Key="Str_StimulusPlay">播放刺激 (F5)</sys:String>
+    <sys:String x:Key="Str_PatientHeard">受測者已聽見 (Space)</sys:String>
+    <sys:String x:Key="Str_AutoAdvance">自動推進頻率 (Auto-Advance)</sys:String>
+    <sys:String x:Key="Str_RetestCurrent">當前頻率重新測試</sys:String>
+    <sys:String x:Key="Str_RollbackStep">回退一階 (Rollback)</sys:String>
+    <sys:String x:Key="Str_AbortTest">中止測驗並返回</sys:String>
+
+    <sys:String x:Key="Str_TimelineTitle">刺激事件時間序列 (Real-time Timeline)</sys:String>
+    <sys:String x:Key="Str_ColTime">時間</sys:String>
+    <sys:String x:Key="Str_ColEar">測試耳</sys:String>
+    <sys:String x:Key="Str_ColFreq">頻率</sys:String>
+    <sys:String x:Key="Str_ColLevel">強度</sys:String>
+    <sys:String x:Key="Str_ColMasking">遮蔽雜音</sys:String>
+    <sys:String x:Key="Str_ColResponse">反應</sys:String>
+    <sys:String x:Key="Str_ColRt">反應時間</sys:String>
+    <sys:String x:Key="Str_ColOutcome">判定結果</sys:String>
+
+    <!-- Patient Screen / Window -->
+    <sys:String x:Key="Str_PatientScreenTitle">純音聽力測驗 (受測者端)</sys:String>
+    <sys:String x:Key="Str_DualScreenSub">雙螢幕副畫面模式</sys:String>
+    <sys:String x:Key="Str_CountdownTitle">測驗即將開始</sys:String>
+    <sys:String x:Key="Str_CountdownSub">請戴妥耳機，調整至舒適位置並保持安靜</sys:String>
+    <sys:String x:Key="Str_CountdownTip">倒數結束後將自動播放測試音；聽到聲音請按【我聽到了】</sys:String>
+    <sys:String x:Key="Str_PatientTestingTitle">請保持安靜，專注聆聽</sys:String>
+    <sys:String x:Key="Str_PatientTestingSub">每音最長播放 3 秒，只要感覺聽見微弱聲音，請立即按下反應鍵（不必等播放完畢）</sys:String>
+    <sys:String x:Key="Str_PatientHeardBtn">我聽到了！</sys:String>
+    <sys:String x:Key="Str_PatientHeardTip">聽到請按【空白鍵 Space】或點此 (立即確認)</sys:String>
+    <sys:String x:Key="Str_BlindAlert">⚠️ 提醒：目前處於靜音間隔，請勿盲目猜測！請等實際在耳機聽到蜂鳴音時再按鍵。</sys:String>
+
+    <!-- Completion Overlay -->
+    <sys:String x:Key="Str_CompletionTitle">聽力測驗已完成！</sys:String>
+    <sys:String x:Key="Str_LeftEarPta">左耳 PTA (0.5k-4k)</sys:String>
+    <sys:String x:Key="Str_RightEarPta">右耳 PTA (0.5k-4k)</sys:String>
+    <sys:String x:Key="Str_HearingGrade">聽力評級</sys:String>
+    <sys:String x:Key="Str_ReliabilityRating">可靠度評估</sys:String>
+    <sys:String x:Key="Str_ExportJson">匯出完整 JSON 報告</sys:String>
+    <sys:String x:Key="Str_ExportCsv">匯出 CSV 聽力表格</sys:String>
+    <sys:String x:Key="Str_SaveAndFinish">儲存並返回首頁</sys:String>
+    <sys:String x:Key="Str_AnonymizePii">去識別化 (隱藏個資 PII)</sys:String>
+
+    <!-- History View -->
+    <sys:String x:Key="Str_HistoryTitle">歷史測驗數據紀錄</sys:String>
+    <sys:String x:Key="Str_HistorySub">本機 SQLite 資料庫安全存檔</sys:String>
+    <sys:String x:Key="Str_ColTestDate">測驗時間</sys:String>
+    <sys:String x:Key="Str_ColPatientId">受測者編號</sys:String>
+    <sys:String x:Key="Str_ColGender">性別</sys:String>
+    <sys:String x:Key="Str_ColAge">年齡</sys:String>
+    <sys:String x:Key="Str_ColLeftPta">左耳 PTA</sys:String>
+    <sys:String x:Key="Str_ColRightPta">右耳 PTA</sys:String>
+    <sys:String x:Key="Str_ColReliability">可靠度</sys:String>
+    <sys:String x:Key="Str_ExportSelectedJson">匯出選取紀錄 (JSON)</sys:String>
+    <sys:String x:Key="Str_ExportSelectedCsv">匯出選取紀錄 (CSV)</sys:String>
+    <sys:String x:Key="Str_RefreshHistory">重新整理</sys:String>
+
+    <!-- Calibration View -->
+    <sys:String x:Key="Str_CalibrationTitle">設備與聲學校正管理中心</sys:String>
+    <sys:String x:Key="Str_CalibrationSub">RETSPL 聲壓換算與防竄改數位簽章</sys:String>
+    <sys:String x:Key="Str_HwFingerprintTitle">本機硬體電聲指紋 (Hardware Fingerprint)</sys:String>
+    <sys:String x:Key="Str_CalibFingerprintTitle">校正檔綁定指紋 (Profile Fingerprint)</sys:String>
+    <sys:String x:Key="Str_ExpiryDate">有效期限</sys:String>
+    <sys:String x:Key="Str_Laboratory">簽發實驗室</sys:String>
+    <sys:String x:Key="Str_CalibPointsTableTitle">逐頻率 RETSPL 校正數據 (dB SPL)</sys:String>
+    <sys:String x:Key="Str_GenerateLocalProfile">產生本機校驗檔 (未簽章)</sys:String>
+    <sys:String x:Key="Str_ImportSignedProfile">匯入實驗室簽章校正檔 (.json)</sys:String>
+
+    <!-- Dynamic & Canvas Strings -->
+    <sys:String x:Key="Str_AudiogramFreqAxis">頻率 Frequency (Hz)</sys:String>
+    <sys:String x:Key="Str_AudiogramDbHlAxis">聽力級 (dB HL)</sys:String>
+    <sys:String x:Key="Str_AudiogramDbRelAxis">相對強度 (dBFS/Rel)</sys:String>
+    <sys:String x:Key="Str_AudiogramWatermark">非醫療診斷 / 未校正研究模式</sys:String>
+    <sys:String x:Key="Str_GradeNormal">正常聽力 (Normal)</sys:String>
+    <sys:String x:Key="Str_GradeMild">輕度聽損 (Mild)</sys:String>
+    <sys:String x:Key="Str_GradeModerate">中度聽損 (Moderate)</sys:String>
+    <sys:String x:Key="Str_GradeModeratelySevere">中重度聽損 (Moderately Severe)</sys:String>
+    <sys:String x:Key="Str_GradeSevere">重度聽損 (Severe)</sys:String>
+    <sys:String x:Key="Str_GradeProfound">極重度聽損 (Profound)</sys:String>
+    <sys:String x:Key="Str_GradeNone">未測得有效聽閾</sys:String>
+    <sys:String x:Key="Str_ReliabilityGood">良好 (Good) - 假陽性率低，測試數據具備高信賴度</sys:String>
+    <sys:String x:Key="Str_ReliabilityQuestionable">可疑 (Questionable) - 假陽性或 1000Hz 複測差異稍高</sys:String>
+    <sys:String x:Key="Str_ReliabilityPoor">不佳 (Poor) - 建議重新施測</sys:String>
+    <sys:String x:Key="Str_ReliabilityAssessing">評估中</sys:String>
+    <sys:String x:Key="Str_EmergencyStopTriggered">全域緊急停止已觸發！音訊端點強制靜音。</sys:String>
+    <sys:String x:Key="Str_StatusReady">準備中</sys:String>
+    <sys:String x:Key="Str_StatusPlaying">播放刺激中</sys:String>
+    <sys:String x:Key="Str_StatusWaiting">等待受測者反應</sys:String>
+    <sys:String x:Key="Str_StatusRecorded">已記錄反應</sys:String>
+    <sys:String x:Key="Str_StatusNoResponse">無反應</sys:String>
+    <sys:String x:Key="Str_LicenseFooter">開源授權：CC BY-NC 4.0  |  作者：rain3d (https://github.com/rain3d)  |  個人與學術研究免費，禁止商業營利用途</sys:String>
+</ResourceDictionary>

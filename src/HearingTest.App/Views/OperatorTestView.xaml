@@ -1,0 +1,512 @@
+<UserControl x:Class="HearingTest.App.Views.OperatorTestView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controls="clr-namespace:HearingTest.App.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="720" d:DesignWidth="1200">
+    <Grid>
+        <!-- Main Workspace Content -->
+        <Grid Margin="24">
+            <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="180"/>
+        </Grid.RowDefinitions>
+
+        <!-- Top Header & Emergency Stop Alert if tripped -->
+        <Grid Grid.Row="0" Margin="0,0,0,16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <Button Style="{StaticResource InteractiveCardStyle}" Padding="10,6" Command="{Binding NavigateCommand}" CommandParameter="Home" Margin="0,0,16,0">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Data="{StaticResource IconHome}" Fill="{StaticResource TextSecondaryBrush}" Width="16" Height="16" Stretch="Uniform" Margin="0,0,6,0"/>
+                        <TextBlock Text="{DynamicResource Str_ReturnHome}" Foreground="{StaticResource TextSecondaryBrush}" FontSize="12" FontWeight="SemiBold"/>
+                    </StackPanel>
+                </Button>
+
+                <TextBlock Text="{DynamicResource Str_OperatorConsoleTitle}" FontSize="20" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}" VerticalAlignment="Center"/>
+                <TextBlock Text="{DynamicResource Str_OperatorConsoleSub}" FontSize="13" Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center" Margin="8,0,0,0"/>
+
+                <!-- Dual Screen Patient Window Button -->
+                <Button Style="{StaticResource InteractiveCardStyle}" Padding="10,6" Command="{Binding OpenPatientWindowCommand}" Margin="16,0,0,0">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Data="{StaticResource IconSettings}" Fill="{StaticResource PrimaryAccentBrush}" Width="14" Height="14" Stretch="Uniform" Margin="0,0,6,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="{DynamicResource Str_OpenPatientScreen}" Foreground="{StaticResource PrimaryAccentBrush}" FontSize="12" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+
+                <!-- Completion Summary Button -->
+                <Button Style="{StaticResource InteractiveCardStyle}" Padding="10,6" Command="{Binding ShowCompletionOverlayCommand}" Margin="16,0,0,0"
+                        Visibility="{Binding IsTestCompleted, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Data="{StaticResource IconCheck}" Fill="#10B981" Width="14" Height="14" Stretch="Uniform" Margin="0,0,6,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="{DynamicResource Str_TestCompleteSummary}" Foreground="#34D399" FontSize="12" FontWeight="Bold" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                <!-- Language Selector Pill -->
+                <ComboBox Style="{StaticResource LanguageComboBoxStyle}"
+                          ItemsSource="{Binding AvailableLanguages}"
+                          SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}"
+                          Margin="0,0,12,0"
+                          VerticalAlignment="Center"/>
+
+                <!-- Emergency Stop Status Banner if tripped -->
+                <Border Background="{StaticResource DangerBrush}" CornerRadius="8" Padding="14,6"
+                        Visibility="{Binding IsEmergencyStopped, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Data="{StaticResource IconEmergencyStop}" Fill="#FFFFFF" Width="16" Height="16" Stretch="Uniform" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding EmergencyStopMessage}" Foreground="#FFFFFF" FontWeight="Bold" FontSize="12" VerticalAlignment="Center"/>
+                        <Button Content="{DynamicResource Str_ResetUnlock}" Background="#FFFFFF" Foreground="{StaticResource DangerBrush}" FontWeight="Bold" 
+                                Padding="8,2" Margin="12,0,0,0" Command="{Binding ResetEmergencyStopCommand}"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Grid>
+
+        <!-- Main Middle Working Area (3 Columns: Left Audiogram, Center Current Signal, Right Action Controls) -->
+        <Grid Grid.Row="1" Margin="0,0,0,16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="16"/>
+                <ColumnDefinition Width="3.5*"/>
+                <ColumnDefinition Width="16"/>
+                <ColumnDefinition Width="3.5*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Left: Real-time Audiogram Canvas Card -->
+            <Border Grid.Column="0" Style="{StaticResource CardBorderStyle}" Padding="12">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <DockPanel Margin="8,4,8,8">
+                        <TextBlock Text="即時聽力圖 (Live Audiogram)" FontWeight="Bold" FontSize="14" Foreground="{StaticResource TextPrimaryBrush}"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <TextBlock Text="✕ 左耳 (藍色)" Foreground="#3B82F6" FontWeight="SemiBold" FontSize="12" Margin="0,0,14,0"/>
+                            <TextBlock Text="○ 右耳 (紅色)" Foreground="#EF4444" FontWeight="SemiBold" FontSize="12"/>
+                        </StackPanel>
+                    </DockPanel>
+
+                    <controls:AudiogramCanvas Grid.Row="1" 
+                                             ThresholdResults="{Binding ThresholdResults}"
+                                             ActiveFrequencyHz="{Binding CurrentFrequencyHz}"
+                                             ActiveEar="{Binding CurrentEar}"
+                                             IsCalibrated="{Binding IsCalibrated}"/>
+                </Grid>
+            </Border>
+
+            <!-- Center: Current Ear, Frequency, Intensity & Signal State -->
+            <Border Grid.Column="2" Style="{StaticResource CardBorderStyle}" Padding="20">
+                <StackPanel VerticalAlignment="Center">
+                    <!-- Current Ear Pill -->
+                    <Border Background="{Binding CurrentEarBrush}" CornerRadius="10" Padding="14,8" HorizontalAlignment="Center" Margin="0,0,0,18">
+                        <StackPanel Orientation="Horizontal">
+                            <Path Data="{StaticResource IconEar}" Fill="#FFFFFF" Width="18" Height="18" Stretch="Uniform" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding CurrentEarText}" FontWeight="Bold" FontSize="16" Foreground="#FFFFFF" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Frequency Display -->
+                    <TextBlock Text="測試頻率" HorizontalAlignment="Center" FontSize="12" Foreground="{StaticResource TextSecondaryBrush}"/>
+                    <TextBlock Text="{Binding CurrentFrequencyHz, StringFormat='{}{0} Hz'}" HorizontalAlignment="Center" FontSize="36" FontWeight="Bold" Foreground="{StaticResource PrimaryAccentBrush}" Margin="0,2,0,14"/>
+
+                    <!-- Tone Level Display (0~50 dB HL) -->
+                    <TextBlock Text="純音強度 (限制 0~50 dB HL)" HorizontalAlignment="Center" FontSize="12" Foreground="{StaticResource TextSecondaryBrush}"/>
+                    <TextBlock Text="{Binding CurrentLevelDisplay}" HorizontalAlignment="Center" FontSize="32" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}" Margin="0,2,0,14"/>
+
+                    <!-- Signal Status Pill -->
+                    <Border Background="#1E293B" BorderBrush="{StaticResource CardBorderBrush}" BorderThickness="1" CornerRadius="8" Padding="12,8" Margin="0,0,0,10">
+                        <TextBlock Text="{Binding StimulusStatusText}" FontWeight="SemiBold" FontSize="13" Foreground="{StaticResource TextPrimaryBrush}" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center"/>
+                    </Border>
+
+                    <!-- Countdown Indicator Card (Active during 5s countdown) -->
+                    <Border Background="#0C2540" BorderBrush="{StaticResource PrimaryAccentBrush}" BorderThickness="1.5" CornerRadius="10" Padding="12,10" Margin="0,0,0,12"
+                            Visibility="{Binding IsCountdownActive, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel HorizontalAlignment="Center">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="⏳ 測驗準備中，倒數 " FontSize="13" Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding CountdownText}" FontSize="20" FontWeight="Bold" Foreground="{StaticResource PrimaryAccentBrush}" VerticalAlignment="Center" Margin="2,0,2,0"/>
+                                <TextBlock Text=" 秒" FontSize="13" Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <Button Style="{StaticResource InteractiveCardStyle}" Padding="10,4" Margin="0,8,0,0" HorizontalAlignment="Center"
+                                    Command="{Binding SkipCountdownCommand}">
+                                <TextBlock Text="⏩ 略過倒數，立即開始 (Space)" FontSize="11" Foreground="{StaticResource PrimaryAccentBrush}" FontWeight="SemiBold"/>
+                            </Button>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Blind Press Alert Banner -->
+                    <Border Background="#7F1D1D" BorderBrush="#EF4444" BorderThickness="1" CornerRadius="8" Padding="10,8" Margin="0,0,0,12"
+                            Visibility="{Binding BlindPressWarning, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel Orientation="Horizontal">
+                            <Path Data="{StaticResource IconStop}" Fill="#FCA5A5" Width="16" Height="16" Stretch="Uniform" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding BlindPressWarningText}" Foreground="#FCA5A5" FontWeight="Bold" FontSize="11" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Waveform & Duration Info -->
+                    <Grid Margin="0,0,0,12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Background="#0C1B33" CornerRadius="6" Padding="8,6" Margin="0,0,4,0">
+                            <TextBlock Text="波形：臨床脈衝音" FontSize="11" Foreground="#38BDF8" HorizontalAlignment="Center"/>
+                        </Border>
+                        <Border Grid.Column="1" Background="#0C1B33" CornerRadius="6" Padding="8,6" Margin="4,0,0,0">
+                            <TextBlock Text="長度：最長 3 秒" FontSize="11" Foreground="#38BDF8" HorizontalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+
+                    <!-- Phase 5 Contralateral Masking Panel -->
+                    <Border Background="#0C1B33" BorderBrush="#1E3A8A" BorderThickness="1" CornerRadius="8" Padding="12">
+                        <StackPanel>
+                            <DockPanel>
+                                <TextBlock Text="對側窄頻遮蔽 (Masking)" FontWeight="Bold" FontSize="12" Foreground="#93C5FD"/>
+                                <CheckBox IsChecked="{Binding IsMaskingEnabled}" Content="啟用遮蔽" Foreground="{StaticResource TextPrimaryBrush}" FontSize="11" HorizontalAlignment="Right"/>
+                            </DockPanel>
+                            <TextBlock Text="{Binding MaskingRecommendationText}" FontSize="11" Foreground="#F59E0B" Margin="0,4,0,6" TextWrapping="Wrap"/>
+                            <Grid Visibility="{Binding IsMaskingEnabled, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="強度：" FontSize="11" Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center"/>
+                                <ComboBox Grid.Column="1" 
+                                          Style="{StaticResource DarkComboBoxStyle}" 
+                                          ItemsSource="{Binding AvailableMaskingLevels}" 
+                                          SelectedItem="{Binding MaskingLevelHl}" 
+                                          ItemStringFormat="{}{0:0} dB HL"
+                                          Margin="6,0" 
+                                          FontSize="12" 
+                                          Height="26"/>
+                                <Button Grid.Column="2" Content="推薦值" Command="{Binding AutoSetMaskingCommand}" Background="#2563EB" Foreground="#FFFFFF" FontSize="10" Padding="6,2"/>
+                            </Grid>
+                            <TextBlock Text="{Binding MaskingStatusDescription}" FontSize="10" Foreground="{StaticResource TextMutedBrush}" Margin="0,4,0,0"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <!-- Right: Action Controls (Next Stimulus, Heard, Not Heard, Pause, Emergency Stop) -->
+            <Border Grid.Column="4" Style="{StaticResource CardBorderStyle}" Padding="20">
+                <Grid VerticalAlignment="Center">
+                    <!-- Countdown Active Controls (Active during 5s countdown) -->
+                    <StackPanel Visibility="{Binding IsCountdownActive, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Border Background="#0C2540" BorderBrush="{StaticResource PrimaryAccentBrush}" BorderThickness="1.5" CornerRadius="12" Padding="16" Margin="0,0,0,16">
+                            <StackPanel HorizontalAlignment="Center">
+                                <TextBlock Text="⏳ 測驗準備中" FontSize="15" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                                <Border Width="76" Height="76" CornerRadius="38" Background="#133659" BorderBrush="{StaticResource PrimaryAccentBrush}" BorderThickness="2.5" Margin="0,0,0,12" HorizontalAlignment="Center">
+                                    <TextBlock Text="{Binding CountdownText}" FontSize="40" FontWeight="Bold" Foreground="{StaticResource PrimaryAccentBrush}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <TextBlock Text="倒數結束後將自動播放測試音" FontSize="11" Foreground="{StaticResource TextSecondaryBrush}" HorizontalAlignment="Center" Margin="0,0,0,14"/>
+                                <Button Style="{StaticResource PrimaryButtonStyle}" Padding="14,10" Command="{Binding SkipCountdownCommand}" HorizontalAlignment="Stretch">
+                                    <TextBlock Text="⏩ 立即開始 (略過倒數)" FontSize="13" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                </Button>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- EMERGENCY STOP (E-STOP) BIG BUTTON -->
+                        <Button Style="{StaticResource EmergencyStopButtonStyle}" Command="{Binding EmergencyStopCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Path Data="{StaticResource IconEmergencyStop}" Fill="#FFFFFF" Width="20" Height="20" Stretch="Uniform" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                                <TextBlock Text="緊急停止 (Esc)" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+
+                    <!-- Testing Controls (Active during testing) -->
+                    <StackPanel Visibility="{Binding IsPatientTestingActive, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <!-- Play Next Stimulus -->
+                        <Button Style="{StaticResource PrimaryButtonStyle}" Command="{Binding NextStimulusCommand}" Margin="0,0,0,12">
+                            <StackPanel Orientation="Horizontal">
+                                <Path Data="{StaticResource IconPlay}" Fill="#0A0E1A" Width="16" Height="16" Stretch="Uniform" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                                <TextBlock Text="播放下一次刺激 (F5)" FontSize="15" FontWeight="Bold" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+
+                        <!-- Automation & Mode Controls -->
+                        <Border Background="#0C1B33" BorderBrush="#1E293B" BorderThickness="1" CornerRadius="8" Padding="10,8" Margin="0,0,0,12">
+                            <StackPanel>
+                                <CheckBox IsChecked="{Binding AutoAdvance}" Content="連續自動推進 (間隔 1.5~2.5 秒)" Foreground="{StaticResource TextPrimaryBrush}" FontSize="11" Margin="0,0,0,4"/>
+                                <CheckBox IsChecked="{Binding UseSimulatedPatientAutoResponse}" Content="模擬受測者自動作答" Foreground="{StaticResource TextSecondaryBrush}" FontSize="11"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Heard (Space key) -->
+                        <Button Background="#10B981" Foreground="#FFFFFF" FontWeight="Bold" FontSize="15" Padding="14,10" 
+                                Margin="0,0,0,10" Cursor="Hand" Command="{Binding HeardResponseCommand}">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" CornerRadius="8" Padding="{TemplateBinding Padding}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                            <TextBlock Text="✓ 有聽到 (空白鍵 Space)"/>
+                        </Button>
+
+                        <!-- Not Heard -->
+                        <Button Background="#475569" Foreground="#FFFFFF" FontWeight="Bold" FontSize="14" Padding="14,10" 
+                                Margin="0,0,0,16" Cursor="Hand" Command="{Binding NotHeardResponseCommand}">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" CornerRadius="8" Padding="{TemplateBinding Padding}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                            <TextBlock Text="✕ 沒聽到"/>
+                        </Button>
+
+                        <!-- Rollback & Pause/Resume -->
+                        <Grid Margin="0,0,0,18">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="8"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Content="暫停 / 繼續" Background="#1E293B" Foreground="{StaticResource TextPrimaryBrush}" 
+                                    Padding="8,8" FontWeight="SemiBold" FontSize="12" Command="{Binding PauseResumeCommand}"/>
+                            <Button Grid.Column="2" Content="回退上一步" Background="#1E293B" Foreground="{StaticResource TextPrimaryBrush}" 
+                                    Padding="8,8" FontWeight="SemiBold" FontSize="12" Command="{Binding RollbackCommand}"/>
+                        </Grid>
+
+                        <!-- EMERGENCY STOP (E-STOP) BIG BUTTON -->
+                        <Button Style="{StaticResource EmergencyStopButtonStyle}" Command="{Binding EmergencyStopCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Path Data="{StaticResource IconEmergencyStop}" Fill="#FFFFFF" Width="20" Height="20" Stretch="Uniform" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                                <TextBlock Text="緊急停止 (Esc)" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+
+                    <!-- Completed Action Controls (Active when completed) -->
+                    <StackPanel Visibility="{Binding IsTestCompleted, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <!-- Completion Badge -->
+                        <Border Background="#064E3B" BorderBrush="#10B981" BorderThickness="1.5" CornerRadius="10" Padding="14,12" Margin="0,0,0,16">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,6">
+                                    <Path Data="{StaticResource IconCheck}" Fill="#34D399" Width="18" Height="18" Stretch="Uniform" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                                    <TextBlock Text="🎉 測驗已全數完成" FontWeight="Bold" FontSize="15" Foreground="#FFFFFF" VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <TextBlock Text="各頻率聽閾已確立並存入本機資料庫" FontSize="11" Foreground="#A7F3D0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Action Buttons -->
+                        <Button Style="{StaticResource PrimaryButtonStyle}" Command="{Binding ShowCompletionOverlayCommand}" Margin="0,0,0,10" Padding="12,10">
+                            <StackPanel Orientation="Horizontal">
+                                <Path Data="{StaticResource IconChart}" Fill="#0A0E1A" Width="14" Height="14" Stretch="Uniform" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                                <TextBlock Text="檢視測驗總結報告" FontSize="13" FontWeight="Bold" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button Content="📊 歷史紀錄與報告中心" Background="#1E293B" Foreground="{StaticResource TextPrimaryBrush}" 
+                                Padding="12,9" FontWeight="SemiBold" FontSize="12" Margin="0,0,0,10"
+                                Command="{Binding NavigateCommand}" CommandParameter="History"/>
+
+                        <Button Content="📄 匯出 JSON 報告" Background="#1E293B" Foreground="{StaticResource TextPrimaryBrush}" 
+                                Padding="12,9" FontWeight="SemiBold" FontSize="12" Margin="0,0,0,10"
+                                Command="{Binding ExportJsonCommand}"/>
+
+                        <Button Content="📑 匯出 CSV 報告" Background="#1E293B" Foreground="{StaticResource TextPrimaryBrush}" 
+                                Padding="12,9" FontWeight="SemiBold" FontSize="12" Margin="0,0,0,10"
+                                Command="{Binding ExportCsvCommand}"/>
+
+                        <Button Content="🔄 重新開始測驗" Background="#0C1B33" BorderBrush="#38BDF8" BorderThickness="1" Foreground="#38BDF8" 
+                                Padding="12,10" FontWeight="Bold" FontSize="13" Margin="0,6,0,0"
+                                Command="{Binding RestartTestCommand}"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <!-- Bottom: Stimulus Timeline & Reliability Ratings -->
+        <Border Grid.Row="2" Style="{StaticResource CardBorderStyle}" Padding="16">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <DockPanel Margin="0,0,0,8">
+                    <TextBlock Text="刺激事件時間軸 (Stimulus Timeline)" FontWeight="Bold" FontSize="13" Foreground="{StaticResource TextPrimaryBrush}"/>
+                    <TextBlock Text="{Binding ReliabilityText}" FontWeight="SemiBold" FontSize="12" Foreground="{StaticResource PrimaryAccentBrush}" HorizontalAlignment="Right"/>
+                </DockPanel>
+
+                <!-- DataGrid or ListView for Recent Events -->
+                <ListView Grid.Row="1" ItemsSource="{Binding RecentEvents}" Background="Transparent" BorderThickness="0" Foreground="{StaticResource TextPrimaryBrush}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="序號" DisplayMemberBinding="{Binding SequenceNo}" Width="50"/>
+                            <GridViewColumn Header="耳別" DisplayMemberBinding="{Binding Ear}" Width="70"/>
+                            <GridViewColumn Header="頻率 (Hz)" DisplayMemberBinding="{Binding FrequencyHz}" Width="90"/>
+                            <GridViewColumn Header="強度 (dB HL)" DisplayMemberBinding="{Binding ToneLevelHl, TargetNullValue='Catch Trial'}" Width="100"/>
+                            <GridViewColumn Header="波形" DisplayMemberBinding="{Binding Waveform}" Width="75"/>
+                            <GridViewColumn Header="遮蔽耳" DisplayMemberBinding="{Binding MaskingEar, TargetNullValue='無'}" Width="65"/>
+                            <GridViewColumn Header="遮蔽(dB)" DisplayMemberBinding="{Binding MaskingLevel}" Width="65"/>
+                            <GridViewColumn Header="反應結果" DisplayMemberBinding="{Binding Response}" Width="75"/>
+                            <GridViewColumn Header="延遲 (ms)" DisplayMemberBinding="{Binding ResponseLatencyMs}" Width="75"/>
+                            <GridViewColumn Header="對照" DisplayMemberBinding="{Binding CatchTrial}" Width="60"/>
+                            <GridViewColumn Header="時間" DisplayMemberBinding="{Binding PlayedAt, StringFormat='HH:mm:ss'}" Width="80"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </Border>
+    </Grid>
+
+    <!-- Test Completed Modal Dialog Overlay -->
+    <Grid Background="#D8050811"
+          Visibility="{Binding IsCompletionOverlayVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+        <Border Width="680" Background="#0F172A" BorderBrush="#10B981" BorderThickness="2" CornerRadius="18" Padding="32" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="40" Color="#000000" Opacity="0.85" ShadowDepth="8"/>
+            </Border.Effect>
+            <Grid>
+                <!-- Close Button in Top Right -->
+                <Button Style="{StaticResource InteractiveCardStyle}" Padding="10,6" HorizontalAlignment="Right" VerticalAlignment="Top"
+                        Command="{Binding DismissCompletionOverlayCommand}" Margin="0,-16,-16,0" ToolTip="關閉提示，檢視背景聽力圖">
+                    <TextBlock Text="✕ 關閉" FontSize="13" Foreground="{StaticResource TextSecondaryBrush}" FontWeight="SemiBold"/>
+                </Button>
+
+                <StackPanel>
+                    <!-- Checkmark & Title -->
+                    <Border Width="72" Height="72" CornerRadius="36" Background="#064E3B" BorderBrush="#10B981" BorderThickness="2.5" HorizontalAlignment="Center" Margin="0,0,0,16">
+                        <Path Data="{StaticResource IconCheck}" Fill="#34D399" Width="36" Height="36" Stretch="Uniform"/>
+                    </Border>
+
+                    <TextBlock Text="🎉 純音聽力測驗已全數完成！" FontSize="24" FontWeight="Bold" Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                    <TextBlock Text="雙耳所有測試頻率之聽閾已確立，並已自動儲存至本機 SQLite 資料庫。" FontSize="14" Foreground="{StaticResource TextSecondaryBrush}" HorizontalAlignment="Center" Margin="0,6,0,24"/>
+
+                    <!-- PTA Summary Cards (2 Columns: Left Ear & Right Ear) -->
+                    <Grid Margin="0,0,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="16"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Left Ear Summary Card -->
+                        <Border Grid.Column="0" Background="#0A162B" BorderBrush="#1E3A8A" BorderThickness="1.5" CornerRadius="12" Padding="16">
+                            <StackPanel>
+                                <DockPanel Margin="0,0,0,8">
+                                    <TextBlock Text="左耳 (Left Ear - ✕)" FontWeight="Bold" FontSize="15" Foreground="#3B82F6"/>
+                                    <Border Background="#1E3A8A" CornerRadius="6" Padding="6,2" HorizontalAlignment="Right">
+                                        <TextBlock Text="藍色" FontSize="11" Foreground="#93C5FD" FontWeight="SemiBold"/>
+                                    </Border>
+                                </DockPanel>
+                                <TextBlock Text="純音平均聽閾 (PTA 4分法)" FontSize="11" Foreground="{StaticResource TextMutedBrush}"/>
+                                <TextBlock Text="{Binding LeftEarPtaDisplay}" FontSize="24" FontWeight="Bold" Foreground="#38BDF8" Margin="0,2,0,6"/>
+                                <TextBlock Text="{Binding LeftEarGradeDisplay}" FontSize="13" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryBrush}"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Right Ear Summary Card -->
+                        <Border Grid.Column="2" Background="#240D13" BorderBrush="#7F1D1D" BorderThickness="1.5" CornerRadius="12" Padding="16">
+                            <StackPanel>
+                                <DockPanel Margin="0,0,0,8">
+                                    <TextBlock Text="右耳 (Right Ear - ○)" FontWeight="Bold" FontSize="15" Foreground="#EF4444"/>
+                                    <Border Background="#7F1D1D" CornerRadius="6" Padding="6,2" HorizontalAlignment="Right">
+                                        <TextBlock Text="紅色" FontSize="11" Foreground="#FCA5A5" FontWeight="SemiBold"/>
+                                    </Border>
+                                </DockPanel>
+                                <TextBlock Text="純音平均聽閾 (PTA 4分法)" FontSize="11" Foreground="{StaticResource TextMutedBrush}"/>
+                                <TextBlock Text="{Binding RightEarPtaDisplay}" FontSize="24" FontWeight="Bold" Foreground="#F87171" Margin="0,2,0,6"/>
+                                <TextBlock Text="{Binding RightEarGradeDisplay}" FontSize="13" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryBrush}"/>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+
+                    <!-- Reliability Assessment Banner -->
+                    <Border Background="#1E293B" BorderBrush="{StaticResource CardBorderBrush}" BorderThickness="1" CornerRadius="10" Padding="14,10" Margin="0,0,0,24">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Path Data="{StaticResource IconShield}" Fill="{StaticResource PrimaryAccentBrush}" Width="16" Height="16" Stretch="Uniform" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding OverallReliabilityDisplay}" Foreground="{StaticResource TextPrimaryBrush}" FontWeight="SemiBold" FontSize="13" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Action Buttons Row 1 -->
+                    <Grid Margin="0,0,0,12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="12"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="12"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="0" Style="{StaticResource PrimaryButtonStyle}" 
+                                Command="{Binding NavigateCommand}" CommandParameter="History" Padding="12,12">
+                            <StackPanel Orientation="Horizontal">
+                                <Path Data="{StaticResource IconChart}" Fill="#0A0E1A" Width="14" Height="14" Stretch="Uniform" Margin="0,0,6,0" VerticalAlignment="Center"/>
+                                <TextBlock Text="查看歷史報告" FontWeight="Bold" FontSize="13" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button Grid.Column="2" Background="#2563EB" Foreground="#FFFFFF" FontWeight="Bold" FontSize="13" Padding="12,12" Cursor="Hand"
+                                Command="{Binding ExportJsonCommand}">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" CornerRadius="8" Padding="{TemplateBinding Padding}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                            <StackPanel Orientation="Horizontal">
+                                <Path Data="{StaticResource IconExport}" Fill="#FFFFFF" Width="14" Height="14" Stretch="Uniform" Margin="0,0,6,0" VerticalAlignment="Center"/>
+                                <TextBlock Text="匯出 JSON" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button Grid.Column="4" Background="#0284C7" Foreground="#FFFFFF" FontWeight="Bold" FontSize="13" Padding="12,12" Cursor="Hand"
+                                Command="{Binding ExportCsvCommand}">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" CornerRadius="8" Padding="{TemplateBinding Padding}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                            <StackPanel Orientation="Horizontal">
+                                <Path Data="{StaticResource IconExport}" Fill="#FFFFFF" Width="14" Height="14" Stretch="Uniform" Margin="0,0,6,0" VerticalAlignment="Center"/>
+                                <TextBlock Text="匯出 CSV" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+
+                    <!-- Action Buttons Row 2 -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="12"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="0" Content="🔄 重新開始測驗" Background="#1E293B" Foreground="{StaticResource TextPrimaryBrush}" 
+                                BorderBrush="{StaticResource CardBorderBrush}" BorderThickness="1" Padding="10,10" FontWeight="SemiBold" FontSize="13" 
+                                Command="{Binding RestartTestCommand}"/>
+
+                        <Button Grid.Column="2" Content="👁️ 檢視本次聽力圖 (關閉提示)" Background="#1E293B" Foreground="{StaticResource PrimaryAccentBrush}" 
+                                BorderBrush="{StaticResource PrimaryAccentBrush}" BorderThickness="1" Padding="10,10" FontWeight="SemiBold" FontSize="13" 
+                                Command="{Binding DismissCompletionOverlayCommand}"/>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Grid>
+</UserControl>

@@ -1,0 +1,42 @@
+<Window x:Class="HearingTest.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:HearingTest.App.Views"
+        xmlns:vm="clr-namespace:HearingTest.App.ViewModels"
+        mc:Ignorable="d"
+        Title="{DynamicResource Str_AppWindowTitle}" 
+        Height="820" Width="1360"
+        MinWidth="1280" MinHeight="720"
+        Icon="pack://application:,,,/Resources/app.ico"
+        Background="{StaticResource BgDarkBrush}"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+
+    <Window.InputBindings>
+        <KeyBinding Key="Space" Command="{Binding HeardResponseCommand}"/>
+        <KeyBinding Key="Escape" Command="{Binding EmergencyStopCommand}"/>
+        <KeyBinding Key="F5" Command="{Binding NextStimulusCommand}"/>
+    </Window.InputBindings>
+
+    <Grid>
+        <!-- Home View -->
+        <views:HomeView Visibility="{Binding CurrentViewName, Converter={StaticResource StringEqualsConverter}, ConverterParameter=Home}"/>
+
+        <!-- Operator Test View -->
+        <views:OperatorTestView Visibility="{Binding CurrentViewName, Converter={StaticResource StringEqualsConverter}, ConverterParameter=OperatorTest}"/>
+
+        <!-- Patient Screen View -->
+        <views:PatientView Visibility="{Binding CurrentViewName, Converter={StaticResource StringEqualsConverter}, ConverterParameter=PatientScreen}"/>
+
+        <!-- History View -->
+        <views:HistoryView Visibility="{Binding CurrentViewName, Converter={StaticResource StringEqualsConverter}, ConverterParameter=History}"/>
+
+        <!-- Calibration View -->
+        <views:CalibrationView Visibility="{Binding CurrentViewName, Converter={StaticResource StringEqualsConverter}, ConverterParameter=Calibration}"/>
+    </Grid>
+</Window>

@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <AssemblyName>HearingTest</AssemblyName>
+    <Product>專業純音聽力測驗系統 (HearingTest)</Product>
+    <Company>Antigravity Pure-Tone Audiometry Project</Company>
+    <Version>1.0.0</Version>
+    <Copyright>Copyright © 2026</Copyright>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <RollForward>LatestMajor</RollForward>
+    <ApplicationIcon>Resources\app.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\app.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HearingTest.Domain\HearingTest.Domain.csproj" />
+    <ProjectReference Include="..\HearingTest.Audio\HearingTest.Audio.csproj" />
+    <ProjectReference Include="..\HearingTest.Calibration\HearingTest.Calibration.csproj" />
+    <ProjectReference Include="..\HearingTest.Persistence\HearingTest.Persistence.csproj" />
+    <ProjectReference Include="..\HearingTest.Reporting\HearingTest.Reporting.csproj" />
+    <ProjectReference Include="..\HearingTest.Hardware\HearingTest.Hardware.csproj" />
+  </ItemGroup>
+
+</Project>

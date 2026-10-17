@@ -1,0 +1,175 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <!-- App & Brand -->
+    <sys:String x:Key="Str_AppTitle">Pure-Tone Audiometry System</sys:String>
+    <sys:String x:Key="Str_AppSubtitle">Pure-Tone Audiometry Clinical &amp; Research Platform</sys:String>
+    <sys:String x:Key="Str_AppWindowTitle">Pure-Tone Audiometry System v1.0.0 - [Research/Personal Tracking - Non-Diagnostic]</sys:String>
+    <sys:String x:Key="Str_PatientWindowTitle">Pure-Tone Audiometry - Patient Screen</sys:String>
+    <sys:String x:Key="Str_LanguageLabel">Language</sys:String>
+
+    <!-- Home View -->
+    <sys:String x:Key="Str_CalibrationBadgeValid">Calibration: Valid (Verified)</sys:String>
+    <sys:String x:Key="Str_CalibrationBadgeInvalid">Calibration: Uncalibrated (Research)</sys:String>
+    <sys:String x:Key="Str_SafeInterlockBadge">Safety Interlock: 0~50 dB HL (Locked)</sys:String>
+    <sys:String x:Key="Str_HardwareStatusTitle">System Environment &amp; Electroacoustic Chain</sys:String>
+    <sys:String x:Key="Str_HardwareStatusDesc">Audio Driver: WASAPI Exclusive (48 kHz / 24-bit)  |  Headphone Fingerprint: Closed-Back Monitor  |  Non-Medical Disclaimer Active</sys:String>
+    <sys:String x:Key="Str_SimulatedPatientCheck">Enable Virtual Patient Auto-Response (Simulation Mode)</sys:String>
+
+    <sys:String x:Key="Str_StartSixFreqTest">Start Standard 6-Frequency Test</sys:String>
+    <sys:String x:Key="Str_StartSixFreqDesc">250, 500, 1000, 2000, 4000, 8000 Hz Left &amp; Right Ear Automatic Threshold Protocol</sys:String>
+    <sys:String x:Key="Str_StartQuickVerification">Personal Verification Preset (LeftEarVerification)</sys:String>
+    <sys:String x:Key="Str_StartQuickVerificationDesc">Load left ear historical baseline comparison (500Hz:20dB, 1000Hz:40dB, 2000Hz:30dB)</sys:String>
+
+    <sys:String x:Key="Str_OpenPatientScreen">Open Secondary Patient Window</sys:String>
+    <sys:String x:Key="Str_OpenPatientScreenDesc">Dual-display blind test mode, hides dB and frequency indicators</sys:String>
+    <sys:String x:Key="Str_OpenCalibration">Device &amp; Acoustic Calibration</sys:String>
+    <sys:String x:Key="Str_OpenCalibrationDesc">Hardware fingerprint binding, RETSPL calibration &amp; tamper-proof signatures</sys:String>
+    <sys:String x:Key="Str_OpenHistory">Historical Test Records</sys:String>
+    <sys:String x:Key="Str_OpenHistoryDesc">Review audiograms, event timelines, and clinical reports in local SQLite</sys:String>
+
+    <sys:String x:Key="Str_SystemFunctions">System Features</sys:String>
+    <sys:String x:Key="Str_CardStartTest">Start Test</sys:String>
+    <sys:String x:Key="Str_CardStartTestDesc">Open real-time operator console</sys:String>
+    <sys:String x:Key="Str_CardPatientView">Patient Screen</sys:String>
+    <sys:String x:Key="Str_CardPatientViewDesc">Switch to distraction-free patient view</sys:String>
+    <sys:String x:Key="Str_CardHistory">History Records</sys:String>
+    <sys:String x:Key="Str_CardHistoryDesc">Query historical audiograms &amp; reports</sys:String>
+    <sys:String x:Key="Str_CardCalib">Calibration</sys:String>
+    <sys:String x:Key="Str_CardCalibDesc">Hardware fingerprint &amp; calibration</sys:String>
+    <sys:String x:Key="Str_CardAudio">Audio Device</sys:String>
+    <sys:String x:Key="Str_CardAudioDesc">WASAPI output &amp; channel verification</sys:String>
+    <sys:String x:Key="Str_CardExport">Report Export</sys:String>
+    <sys:String x:Key="Str_CardExportDesc">JSON / CSV / De-identified research data</sys:String>
+    <sys:String x:Key="Str_CardHome">System Home</sys:String>
+    <sys:String x:Key="Str_CardHomeDesc">Return to dashboard console</sys:String>
+    <sys:String x:Key="Str_CardSpecs">Specs &amp; Manual</sys:String>
+    <sys:String x:Key="Str_CardSpecsDesc">Regulatory boundaries &amp; ISO standards</sys:String>
+
+    <sys:String x:Key="Str_PatientInfoSection">Patient Demographics &amp; Test Settings</sys:String>
+    <sys:String x:Key="Str_PatientId">Patient ID</sys:String>
+    <sys:String x:Key="Str_PatientAge">Age</sys:String>
+    <sys:String x:Key="Str_PatientGender">Gender</sys:String>
+    <sys:String x:Key="Str_GenderMale">Male</sys:String>
+    <sys:String x:Key="Str_GenderFemale">Female</sys:String>
+    <sys:String x:Key="Str_GenderOther">Unspecified</sys:String>
+    <sys:String x:Key="Str_PatientNotes">Clinical Notes</sys:String>
+    <sys:String x:Key="Str_PatientNotesPlaceholder">Testing environment, tinnitus complaints, medical history...</sys:String>
+
+    <sys:String x:Key="Str_ProtocolGuideTitle">ISO 8253-1 / ASHA Standard Threshold Guidelines</sys:String>
+    <sys:String x:Key="Str_ProtocolGuide1">Utilizes standard 10-down / 5-up bracketing; 2-of-3 responses on ascending runs establishes threshold.</sys:String>
+    <sys:String x:Key="Str_ProtocolGuide2">Sequence: 1000 Hz → 2000 Hz → 4000 Hz → 8000 Hz → 1000 Hz (Retest) → 500 Hz → 250 Hz.</sys:String>
+    <sys:String x:Key="Str_ProtocolGuide3">Hard safety limit locked at 50 dB HL. No response after two 50 dB HL attempts is recorded as NR @ 50 dB HL.</sys:String>
+    <sys:String x:Key="Str_ProtocolGuide4">Random silent Catch Trials are inserted to quantify false-positive rates and guarantee reliability.</sys:String>
+
+    <!-- Operator Test View -->
+    <sys:String x:Key="Str_ReturnHome">Back to Home</sys:String>
+    <sys:String x:Key="Str_OperatorConsoleTitle">Operator Real-Time Audiometer Console</sys:String>
+    <sys:String x:Key="Str_OperatorConsoleSub"> (ISO 8253-1 Auto 10-down / 5-up Bracketing)</sys:String>
+    <sys:String x:Key="Str_TestCompleteSummary">🎉 Test Completed (View Summary)</sys:String>
+    <sys:String x:Key="Str_ResetUnlock">Reset / Unlock</sys:String>
+    <sys:String x:Key="Str_EmergencyStopButton">🛑 Emergency Stop (Esc)</sys:String>
+
+    <sys:String x:Key="Str_ActiveEar">Testing Ear</sys:String>
+    <sys:String x:Key="Str_EarLeft">Left Ear (X - Blue)</sys:String>
+    <sys:String x:Key="Str_EarRight">Right Ear (O - Red)</sys:String>
+    <sys:String x:Key="Str_ActiveFrequency">Frequency</sys:String>
+    <sys:String x:Key="Str_ActiveLevel">Stimulus Level</sys:String>
+    <sys:String x:Key="Str_ActiveStatus">Status</sys:String>
+    <sys:String x:Key="Str_CatchTrialLabel">Catch Trial (Silent)</sys:String>
+
+    <sys:String x:Key="Str_MaskingDrawerTitle">Contralateral Narrowband Masking</sys:String>
+    <sys:String x:Key="Str_MaskingEnable">Enable Contralateral Masking</sys:String>
+    <sys:String x:Key="Str_MaskingLevel">Masking Level</sys:String>
+    <sys:String x:Key="Str_ApplyAutoMasking">Apply Recommended Masking</sys:String>
+    <sys:String x:Key="Str_MaskingWarning">Interaural Attenuation Notice: Tone level exceeds opposite threshold by ≥ 40 dB. Masking recommended.</sys:String>
+
+    <sys:String x:Key="Str_StimulusPlay">Present Tone (F5)</sys:String>
+    <sys:String x:Key="Str_PatientHeard">Patient Responded (Space)</sys:String>
+    <sys:String x:Key="Str_AutoAdvance">Auto-Advance Frequency</sys:String>
+    <sys:String x:Key="Str_RetestCurrent">Retest Current Frequency</sys:String>
+    <sys:String x:Key="Str_RollbackStep">Step Back (Rollback)</sys:String>
+    <sys:String x:Key="Str_AbortTest">Abort Test &amp; Return</sys:String>
+
+    <sys:String x:Key="Str_TimelineTitle">Stimulus Event Timeline (Real-Time)</sys:String>
+    <sys:String x:Key="Str_ColTime">Time</sys:String>
+    <sys:String x:Key="Str_ColEar">Ear</sys:String>
+    <sys:String x:Key="Str_ColFreq">Frequency</sys:String>
+    <sys:String x:Key="Str_ColLevel">Level</sys:String>
+    <sys:String x:Key="Str_ColMasking">Masking</sys:String>
+    <sys:String x:Key="Str_ColResponse">Response</sys:String>
+    <sys:String x:Key="Str_ColRt">Reaction Time</sys:String>
+    <sys:String x:Key="Str_ColOutcome">Outcome</sys:String>
+
+    <!-- Patient Screen / Window -->
+    <sys:String x:Key="Str_PatientScreenTitle">Pure-Tone Audiometry (Patient View)</sys:String>
+    <sys:String x:Key="Str_DualScreenSub">Dual-Display Blind Mode</sys:String>
+    <sys:String x:Key="Str_CountdownTitle">Test Starting Soon</sys:String>
+    <sys:String x:Key="Str_CountdownSub">Please put on headphones properly and remain quiet in a calm environment</sys:String>
+    <sys:String x:Key="Str_CountdownTip">Tones will play automatically after countdown. Whenever you hear a tone, press [I Heard It].</sys:String>
+    <sys:String x:Key="Str_PatientTestingTitle">Please stay quiet and listen carefully</sys:String>
+    <sys:String x:Key="Str_PatientTestingSub">Each tone plays up to 3s. As soon as you perceive even a faint sound, press the button immediately.</sys:String>
+    <sys:String x:Key="Str_PatientHeardBtn">I Heard It!</sys:String>
+    <sys:String x:Key="Str_PatientHeardTip">Press [Space] or click here immediately upon hearing</sys:String>
+    <sys:String x:Key="Str_BlindAlert">⚠️ Warning: Currently in silent pause! Do not guess. Only respond when you genuinely hear a tone.</sys:String>
+
+    <!-- Completion Overlay -->
+    <sys:String x:Key="Str_CompletionTitle">Audiometry Test Completed!</sys:String>
+    <sys:String x:Key="Str_LeftEarPta">Left Ear PTA (0.5k-4k)</sys:String>
+    <sys:String x:Key="Str_RightEarPta">Right Ear PTA (0.5k-4k)</sys:String>
+    <sys:String x:Key="Str_HearingGrade">Hearing Classification</sys:String>
+    <sys:String x:Key="Str_ReliabilityRating">Reliability Rating</sys:String>
+    <sys:String x:Key="Str_ExportJson">Export Full JSON Report</sys:String>
+    <sys:String x:Key="Str_ExportCsv">Export CSV Table</sys:String>
+    <sys:String x:Key="Str_SaveAndFinish">Save &amp; Return to Home</sys:String>
+    <sys:String x:Key="Str_AnonymizePii">De-identify Data (Redact PII)</sys:String>
+
+    <!-- History View -->
+    <sys:String x:Key="Str_HistoryTitle">Historical Audiometry Records</sys:String>
+    <sys:String x:Key="Str_HistorySub">Secured in Local SQLite Database</sys:String>
+    <sys:String x:Key="Str_ColTestDate">Test Date</sys:String>
+    <sys:String x:Key="Str_ColPatientId">Patient ID</sys:String>
+    <sys:String x:Key="Str_ColGender">Gender</sys:String>
+    <sys:String x:Key="Str_ColAge">Age</sys:String>
+    <sys:String x:Key="Str_ColLeftPta">Left PTA</sys:String>
+    <sys:String x:Key="Str_ColRightPta">Right PTA</sys:String>
+    <sys:String x:Key="Str_ColReliability">Reliability</sys:String>
+    <sys:String x:Key="Str_ExportSelectedJson">Export Selected (JSON)</sys:String>
+    <sys:String x:Key="Str_ExportSelectedCsv">Export Selected (CSV)</sys:String>
+    <sys:String x:Key="Str_RefreshHistory">Refresh</sys:String>
+
+    <!-- Calibration View -->
+    <sys:String x:Key="Str_CalibrationTitle">Acoustic Calibration &amp; Profile Center</sys:String>
+    <sys:String x:Key="Str_CalibrationSub">RETSPL Sound Pressure Conversion &amp; Digital Signatures</sys:String>
+    <sys:String x:Key="Str_HwFingerprintTitle">Hardware Electroacoustic Fingerprint</sys:String>
+    <sys:String x:Key="Str_CalibFingerprintTitle">Profile Bound Fingerprint</sys:String>
+    <sys:String x:Key="Str_ExpiryDate">Expiration Date</sys:String>
+    <sys:String x:Key="Str_Laboratory">Issuing Laboratory</sys:String>
+    <sys:String x:Key="Str_CalibPointsTableTitle">RETSPL Calibration Offsets (dB SPL)</sys:String>
+    <sys:String x:Key="Str_GenerateLocalProfile">Generate Local Profile (Unsigned)</sys:String>
+    <sys:String x:Key="Str_ImportSignedProfile">Import Signed Profile (.json)</sys:String>
+
+    <!-- Dynamic & Canvas Strings -->
+    <sys:String x:Key="Str_AudiogramFreqAxis">Frequency (Hz)</sys:String>
+    <sys:String x:Key="Str_AudiogramDbHlAxis">Hearing Level (dB HL)</sys:String>
+    <sys:String x:Key="Str_AudiogramDbRelAxis">Relative Level (dBFS/Rel)</sys:String>
+    <sys:String x:Key="Str_AudiogramWatermark">Non-Clinical / Uncalibrated Research Mode</sys:String>
+    <sys:String x:Key="Str_GradeNormal">Normal Hearing (0 ~ 25 dB)</sys:String>
+    <sys:String x:Key="Str_GradeMild">Mild Hearing Loss (26 ~ 40 dB)</sys:String>
+    <sys:String x:Key="Str_GradeModerate">Moderate Hearing Loss (41 ~ 55 dB)</sys:String>
+    <sys:String x:Key="Str_GradeModeratelySevere">Moderately Severe Loss (56 ~ 70 dB)</sys:String>
+    <sys:String x:Key="Str_GradeSevere">Severe Hearing Loss (71 ~ 90 dB)</sys:String>
+    <sys:String x:Key="Str_GradeProfound">Profound Hearing Loss (&gt; 90 dB)</sys:String>
+    <sys:String x:Key="Str_GradeNone">No Valid Threshold Obtained</sys:String>
+    <sys:String x:Key="Str_ReliabilityGood">Good - Low false-positive rate, highly trustworthy</sys:String>
+    <sys:String x:Key="Str_ReliabilityQuestionable">Questionable - Elevated false-positive rate or retest discrepancy</sys:String>
+    <sys:String x:Key="Str_ReliabilityPoor">Poor - Retest recommended</sys:String>
+    <sys:String x:Key="Str_ReliabilityAssessing">Assessing...</sys:String>
+    <sys:String x:Key="Str_EmergencyStopTriggered">Emergency Stop Tripped! Audio endpoint hardware muted.</sys:String>
+    <sys:String x:Key="Str_StatusReady">Ready</sys:String>
+    <sys:String x:Key="Str_StatusPlaying">Presenting Tone...</sys:String>
+    <sys:String x:Key="Str_StatusWaiting">Awaiting Response...</sys:String>
+    <sys:String x:Key="Str_StatusRecorded">Response Recorded</sys:String>
+    <sys:String x:Key="Str_StatusNoResponse">No Response</sys:String>
+    <sys:String x:Key="Str_LicenseFooter">Open Source: CC BY-NC 4.0  |  Author: rain3d (https://github.com/rain3d)  |  Free for personal &amp; research use. Commercial use strictly prohibited.</sys:String>
+</ResourceDictionary>

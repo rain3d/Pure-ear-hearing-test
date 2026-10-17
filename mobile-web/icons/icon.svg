@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#0284C7"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#818CF8"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="128" fill="url(#bg)"/>
+  <circle cx="256" cy="256" r="180" fill="none" stroke="#1E293B" stroke-width="12"/>
+  <!-- Sound waves -->
+  <path d="M 330 190 A 90 90 0 0 1 330 322" fill="none" stroke="url(#accent)" stroke-width="16" stroke-linecap="round"/>
+  <path d="M 370 160 A 140 140 0 0 1 370 352" fill="none" stroke="url(#accent)" stroke-width="16" stroke-linecap="round" opacity="0.6"/>
+  <!-- Ear Shape -->
+  <path d="M 230 140 C 170 140 140 180 140 240 C 140 310 180 340 190 370 C 200 400 220 410 240 400 C 260 390 260 360 240 340 C 210 310 200 290 200 240 C 200 200 215 180 240 180 C 260 180 270 195 270 215 C 270 240 245 255 235 255" 
+        fill="none" stroke="#FFFFFF" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Pure Tone Wave Dot -->
+  <circle cx="256" cy="256" r="16" fill="#10B981"/>
+</svg>

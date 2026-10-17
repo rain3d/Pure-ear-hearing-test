@@ -1,0 +1,465 @@
+<!--
+  ============================================================================
+  純音聽力測驗系統 - 手機 PWA 版 (Mobile Pure-Tone Audiometry)
+  Author: rain3d (https://github.com/rain3d)
+  License: Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)
+  免費提供個人自主監測與非營利學術研究使用；嚴格禁止任何商業營利與付費銷售用途。
+  ============================================================================
+-->
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#060911">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="聽力測驗">
+  <title>專業純音聽力測驗 (Pure Tone Audiometry)</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
+  <link rel="apple-touch-icon" href="icons/icon.svg">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Top Header -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-icon">PTA</div>
+        <div>
+          <div class="brand-title" data-i18n="brandTitle">純音聽力測驗</div>
+          <div class="brand-subtitle" data-i18n="brandSubtitle">ISO 8253-1 臨床尋閾流程</div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <select id="lang-select" class="lang-selector" aria-label="語言切換 / Language">
+          <option value="zh-TW">繁體中文</option>
+          <option value="zh-CN">简体中文</option>
+          <option value="en-US">English</option>
+        </select>
+        <div id="calib-badge" class="badge-calib badge-uncalib" data-i18n="calibUncalib">未校正 (相對刻度)</div>
+      </div>
+    </header>
+
+    <!-- VIEW 1: HOME -->
+    <section id="view-home" class="view-section active">
+      <!-- Main Quick Start Card -->
+      <div class="card" style="background: linear-gradient(135deg, #0b1c3d, #0c1322); border-color: #2563eb;">
+        <div class="card-title" style="font-size: 18px; color: #38bdf8;" data-i18n="cardStartTitle">開始標準雙耳六頻測驗</div>
+        <div class="card-desc" style="margin-bottom: 16px;" data-i18n="cardStartDesc">
+          依序檢測 250 ~ 8000 Hz 左右耳氣導聽閾，具備 2 秒實體發聲 (3 秒反應視窗)、隨機 1~3 秒靜音空白防盲猜、對側窄頻遮蔽與即時動態聽力圖。
+        </div>
+
+        <!-- Masking Toggle Option -->
+        <div class="masking-toggle-card">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 18px;">🛡️</span>
+              <div>
+                <div style="font-size: 14px; font-weight: 700; color: #f8fafc;" data-i18n="maskingToggleTitle">對側耳窄頻遮蔽 (Masking)</div>
+                <div style="font-size: 11px; color: #94a3b8;" data-i18n="maskingToggleDesc">測試單耳時，對側非測試耳同步播放窄頻防干擾雜音</div>
+              </div>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="toggle-masking" checked>
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Catch Trial Toggle Option -->
+        <div class="masking-toggle-card" style="margin-top: 10px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 18px;">🤫</span>
+              <div>
+                <div style="font-size: 14px; font-weight: 700; color: #f8fafc;" data-i18n="catchTrialToggleTitle">對照靜音防盲猜 (Catch Trial)</div>
+                <div style="font-size: 11px; color: #94a3b8;" data-i18n="catchTrialToggleDesc">隨機插入無聲對照試驗，精準抓取未聽見卻盲猜按鍵之假陽性</div>
+              </div>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="toggle-catch-trial" checked>
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+
+        <button id="btn-start-test" class="btn-primary" style="margin-top: 14px;">
+          <span data-i18n="btnStartTest">🎧 戴上耳機，開始測驗</span>
+        </button>
+      </div>
+
+      <!-- Audio Test & Status Card (Prevent No-Sound on Mobile) -->
+      <div class="card" style="border-color: #22c55e;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <div class="card-title" style="color: #4ade80; margin-bottom: 0;" data-i18n="soundCheckTitle">🔊 測前聲音與耳機試聽</div>
+          <div id="audio-status-text" style="font-size: 11px; font-weight: 600; color: #f59e0b;" data-i18n="audioUnlockPrompt">🟡 輕觸螢幕解鎖音訊</div>
+        </div>
+        <div class="card-desc" style="margin-bottom: 12px;" data-i18n="soundCheckDesc">
+          測驗前請先點擊下方試聽按鈕，確認耳機左右聲道發聲正常，並調整手機媒體音量至舒適清晰（建議 50%~70%）。
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;">
+          <button id="btn-test-both" class="btn-secondary" style="padding: 10px 6px; font-size: 13px; font-weight: bold; border-color: #22c55e; color: #4ade80;" data-i18n="btnTestBoth">
+            🔊 雙耳純音試聽
+          </button>
+          <button id="btn-test-noise-only" class="btn-secondary" style="padding: 10px 6px; font-size: 13px; font-weight: bold; border-color: #eab308; color: #fde047;" data-i18n="btnTestNoiseOnly">
+            🛡️ 單獨遮蔽雜音
+          </button>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+          <button id="btn-test-left-mask" class="btn-secondary" style="padding: 10px 6px; font-size: 12px; font-weight: bold; border-color: #38bdf8; color: #38bdf8;" data-i18n="btnTestLeftMask">
+            🎧 左耳純音+右耳遮蔽
+          </button>
+          <button id="btn-test-right-mask" class="btn-secondary" style="padding: 10px 6px; font-size: 12px; font-weight: bold; border-color: #ef4444; color: #f87171;" data-i18n="btnTestRightMask">
+            🎧 右耳純音+左耳遮蔽
+          </button>
+        </div>
+
+        <!-- iPhone Silent Switch Warning -->
+        <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 8px; padding: 8px 10px; margin-top: 10px; font-size: 11px; color: #fbbf24; line-height: 1.5;">
+          ⚠️ <strong>iPhone / 手機無聲排查</strong>：請確認手機左側<strong>實體靜音開關已關閉</strong>（不可顯示橘色點），並確認手機「媒體音量」已開啟。
+        </div>
+      </div>
+
+      <!-- Test Protocol Rules Card -->
+      <div class="card">
+        <div class="card-title">📋 受測重要指引</div>
+        <div class="card-desc" style="line-height: 1.7;">
+          • <strong>刺激時間</strong>：每音實體播放 2 秒，反應確認視窗共 3 秒。<br>
+          • <strong>對照靜音</strong>：測驗中隨機穿插「對照靜音試驗 (無聲)」，請確實聽見聲音再按鍵，避免盲猜。<br>
+          • <strong>隨機間隔</strong>：每音之間隨機靜音 1 ~ 3 秒空白停留，徹底打破節奏盲猜。<br>
+          • <strong>聽到即按</strong>：只要隱約聽見聲音，請立即按下綠色【我聽到了】大按鈕（發聲中按下會瞬間中斷）。<br>
+          • <strong>嚴禁盲猜</strong>：靜音空白或對照靜音時盲按會觸發震動警告並記錄假陽性。<br>
+          • <strong>系統音量</strong>：測驗前請將手機音量固定在 50%~70%，測驗中切勿更動。
+        </div>
+      </div>
+
+      <!-- Quick Calibration Shortcut Card -->
+      <div class="card" style="border-color: #334155;">
+        <div class="card-title" style="color: #94a3b8;" data-i18n="calibTitle">📱 手機分貝計校準</div>
+        <div class="card-desc" style="margin-bottom: 12px;" data-i18n="calibDesc">
+          可用另一部手機開啟分貝計 App 緊貼耳機測量聲壓，將讀數對齊真實物理分貝。
+        </div>
+        <button class="btn-secondary" style="width: 100%;" onclick="app.switchView('calib')" data-i18n="navCalib">前往校正中心</button>
+      </div>
+
+      <!-- Open Source License Notice -->
+      <div style="margin-top: 20px; padding: 12px 14px; background: #0c1220; border: 1px solid #1e293b; border-radius: 8px; font-size: 11px; color: #64748b; text-align: center; line-height: 1.5;">
+        ⚖️ <strong>CC BY-NC 4.0</strong> | 作者：<a href="https://github.com/rain3d" target="_blank" style="color: #38bdf8; text-decoration: none;">rain3d</a><br>
+        個人與學術研究免費自由使用，嚴禁任何未授權商業營利行為。
+      </div>
+    </section>
+
+    <!-- VIEW 2: TESTING CONSOLE -->
+    <section id="view-test" class="view-section">
+      <!-- 10s Countdown Panel (Starts before test) -->
+      <div id="countdown-card" class="card countdown-panel" style="display: none; text-align: center; padding: 28px 18px;">
+        <div class="countdown-circle">
+          <div id="countdown-num" class="countdown-number">10</div>
+        </div>
+        <div class="countdown-title" data-i18n="countdownTitle">測驗即將開始</div>
+        <div class="countdown-sub" data-i18n="countdownSub">請戴妥耳機，調整至舒適位置並保持安靜</div>
+        
+        <div class="countdown-tip-box">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;">
+            <path d="M2 12h2M6 8h2M10 4h2M14 6h2M18 10h2M22 12h-2M18 14h-2M14 18h-2M10 20h-2M6 16h-2"/>
+          </svg>
+          <div style="text-align: left; font-size: 13px; color: #e2e8f0; line-height: 1.4;" data-i18n="countdownTip">
+            倒數至 5 秒將自動切換至受測者純淨答題畫面，請將手指放好預備。
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 8px; margin-top: 10px;">
+          <button id="btn-skip-countdown" class="btn-skip-countdown" style="flex: 1;">
+            <span data-i18n="btnSkipCountdown">⏩ 立即開始 / 略過倒數</span>
+          </button>
+          <button id="btn-cancel-countdown" class="btn-emergency-stop-outline" type="button" title="緊急停止測驗">
+            <span data-i18n="btnCancelCountdown">🛑 中止</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Testing Status Card (Visible when countdown finishes) -->
+      <div id="testing-card" class="card" style="text-align: center; padding: 18px;">
+        <div id="test-ear-badge" class="test-ear-badge ear-left">左耳 (Left Channel)</div>
+        
+        <div class="test-params">
+          <div class="param-box">
+            <div id="display-freq" class="param-val">1000</div>
+            <div class="param-unit" data-i18n="labelFreq">測試頻率 (Hz)</div>
+          </div>
+          <div style="width: 1px; background: #1e293b;"></div>
+          <div class="param-box">
+            <div id="display-level" class="param-val">30</div>
+            <div class="param-unit" data-i18n="labelLevel">測試強度 (dB HL)</div>
+          </div>
+        </div>
+
+        <!-- Contralateral Masking Status Pill -->
+        <div id="test-masking-pill" class="masking-status-pill">
+          <span class="masking-pill-icon">🛡️</span>
+          <span id="test-masking-text">對側耳 (右耳) 窄頻遮蔽：30 dB HL</span>
+        </div>
+
+        <!-- Catch Trial Anti-Blind-Guess Status Pill -->
+        <div id="test-catch-pill" class="catch-status-pill">
+          <span class="catch-pill-icon">🤫</span>
+          <span id="test-catch-text">對照靜音防盲猜：已啟用 (隨機抽測中)</span>
+        </div>
+
+        <!-- Radar Pulse Indicator -->
+        <div id="sound-radar" class="sound-radar-container">
+          <div class="radar-circle"></div>
+          <div class="radar-circle" style="animation-delay: 0.5s;"></div>
+          <div class="radar-center-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- 3-Second Progress Bar -->
+        <div class="progress-bar-container">
+          <div id="progress-bar" class="progress-bar"></div>
+        </div>
+
+        <!-- Blind Guess Warning Alert -->
+        <div id="blind-alert" class="blind-alert" data-i18n="blindAlertText">
+          ⚠️ 盲目按鍵警示！目前為靜音期間，請勿猜測，等實際聽到聲音再按！（已記錄假陽性）
+        </div>
+
+        <!-- Status Bar -->
+        <div id="test-status-text" style="font-size: 13px; color: #94a3b8; min-height: 20px; margin-bottom: 20px;" data-i18n="statusReady">
+          準備就緒...
+        </div>
+
+        <!-- Giant Response Button -->
+        <button id="btn-heard" class="btn-heard-giant">
+          <div class="btn-heard-text" data-i18n="btnHeardText">我聽到了！</div>
+          <div class="btn-heard-sub" data-i18n="btnHeardSub">聽到聲音請立刻點擊此處 (或按空白鍵)</div>
+        </button>
+
+        <!-- Slide down to clean mode guide banner -->
+        <div id="btn-scroll-to-clean" class="patient-scroll-guide">
+          <div class="scroll-guide-left">
+            <span class="scroll-guide-icon">👇</span>
+            <div class="scroll-guide-text">
+              <div class="scroll-guide-title" data-i18n="cleanModeShow">往下滑動進入「受測者純淨盲測頁面」</div>
+              <div class="scroll-guide-sub">只顯示「我聽到了！」，隱藏上方所有頻率與音訊提示</div>
+            </div>
+          </div>
+          <div class="scroll-guide-arrow">▼</div>
+        </div>
+
+        <!-- Emergency Stop Button in Testing Card -->
+        <button id="btn-emergency-stop" class="btn-emergency-stop" type="button">
+          <span class="e-stop-icon">🛑</span>
+          <span data-i18n="btnEmergencyStop">緊急停止測驗 (Esc)</span>
+        </button>
+      </div>
+
+      <!-- VIEW 2-B: CLEAN PATIENT RESPONSE SECTION (Revealed when scrolling down) -->
+      <div id="patient-clean-section" class="patient-clean-section" style="display: none;">
+        <div class="patient-clean-header">
+          <div class="patient-clean-badge">
+            <span class="patient-dot"></span>
+            <span>受測者純淨盲測模式</span>
+          </div>
+          <div style="display: flex; gap: 8px; align-items: center;">
+            <button id="btn-emergency-stop-clean-header" class="btn-emergency-stop-mini" type="button" title="緊急停止測驗">
+              🛑 緊急停止
+            </button>
+            <button id="btn-scroll-to-monitor" class="btn-scroll-top" type="button">
+              ▲ 往上滑看監控
+            </button>
+          </div>
+        </div>
+
+        <div class="patient-clean-card">
+          <!-- Countdown / Status hint in clean view -->
+          <div id="patient-countdown-banner" class="patient-countdown-banner" style="display: none;">
+            <span class="countdown-pulse-icon">⏳</span>
+            <span id="patient-countdown-text">即將開始... 倒數 5 秒</span>
+          </div>
+
+          <div class="patient-clean-hint">
+            <div class="patient-hint-title" data-i18n="patientCleanTitle">🎧 請專注聆聽耳機中的聲音</div>
+            <div class="patient-hint-sub" data-i18n="patientCleanSub">只要隱約聽見聲音，請立即點擊下方按鈕（或按空白鍵）</div>
+          </div>
+
+          <!-- Clean Blind Guess Warning Alert -->
+          <div id="blind-alert-clean" class="blind-alert blind-alert-clean" data-i18n="blindAlertText">
+            ⚠️ 提醒：剛才為無聲試驗或靜音期間，請確實在聽見聲音時再按鍵！
+          </div>
+
+          <!-- Clean Giant Response Button -->
+          <button id="btn-heard-clean" class="btn-heard-giant btn-heard-clean">
+            <div class="clean-btn-inner">
+              <div class="clean-btn-icon-wrap">
+                <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/>
+                </svg>
+              </div>
+              <div class="btn-heard-text" data-i18n="btnHeardText">我聽到了！</div>
+              <div class="btn-heard-sub" data-i18n="btnHeardSub">聽到聲音請立刻點擊此處 (或按空白鍵)</div>
+            </div>
+          </button>
+
+          <!-- Emergency Stop for Patient -->
+          <button id="btn-emergency-stop-clean-bottom" class="btn-emergency-stop-patient" type="button">
+            <span data-i18n="btnEmergencyStop">🛑 緊急停止測驗 (若感不適請點此)</span>
+          </button>
+
+          <div class="patient-clean-note">
+            手機可交由受測者單手操作 • 施測者可隨時往上滑動查閱即時數據
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 3: AUDIOGRAM & RESULTS -->
+    <section id="view-result" class="view-section">
+      <!-- Test Completed Congratulations & Guidance Card -->
+      <div class="card completed-guidance-card">
+        <div class="completed-icon-wrap">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <div class="completed-title" data-i18n="statusCompleted">🎉 測驗已順利完成！</div>
+        <div class="completed-sub" data-i18n="resultsTitle">雙耳檢測程序已全數結束，以下為您的聽閾報告</div>
+
+        <div class="completed-notice-box">
+          <div class="completed-notice-item">
+            <span class="notice-bullet">🎧</span>
+            <span><strong>請摘下耳機</strong>，並於座位上稍候休息。</span>
+          </div>
+          <div class="completed-notice-item">
+            <span class="notice-bullet">📊</span>
+            <span>系統已為您產出純音均值 (PTA) 與聽力圖數據供解說與參考。</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Audiogram Chart Card -->
+      <div class="card" style="padding: 16px;">
+        <div class="card-title" style="display: flex; justify-content: space-between; align-items: center;">
+          <span data-i18n="navAudiogram">純音聽力圖 (Audiogram)</span>
+          <div style="font-size: 11px; display: flex; gap: 8px;">
+            <span style="color: #ef4444; font-weight: bold;">● 右耳 (O)</span>
+            <span style="color: #38bdf8; font-weight: bold;">✕ 左耳 (X)</span>
+          </div>
+        </div>
+        
+        <div style="width: 100%; overflow: hidden; margin-top: 10px; border-radius: 8px; border: 1px solid #1e293b;">
+          <canvas id="audiogram-canvas" style="display: block; width: 100%; height: 320px;"></canvas>
+        </div>
+      </div>
+
+      <!-- PTA & Statistics Card -->
+      <div class="card">
+        <div class="card-title" data-i18n="resultsTitle">聽力評估統計 (4 頻均值 500~4000Hz)</div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin: 12px 0; border-bottom: 1px solid #1e293b; padding-bottom: 8px;">
+          <span style="color: #94a3b8; font-size: 13px;" data-i18n="leftEarPta">左耳純音均值 (PTA)：</span>
+          <div style="text-align: right;">
+            <div id="pta-left" style="font-weight: bold; color: #38bdf8; font-size: 15px;">--</div>
+            <div id="grade-left" style="font-size: 11px; color: #94a3b8; margin-top: 2px;">--</div>
+          </div>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin: 8px 0; border-bottom: 1px solid #1e293b; padding-bottom: 8px;">
+          <span style="color: #94a3b8; font-size: 13px;" data-i18n="rightEarPta">右耳純音均值 (PTA)：</span>
+          <div style="text-align: right;">
+            <div id="pta-right" style="font-weight: bold; color: #ef4444; font-size: 15px;">--</div>
+            <div id="grade-right" style="font-size: 11px; color: #94a3b8; margin-top: 2px;">--</div>
+          </div>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin: 8px 0;">
+          <span style="color: #94a3b8; font-size: 13px;" data-i18n="reliabilityLabel">測驗信度評估：</span>
+          <span id="test-reliability" style="font-weight: bold; color: #10b981;">良好 (Good)</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin: 8px 0; border-top: 1px solid #1e293b; padding-top: 8px;">
+          <span style="color: #94a3b8; font-size: 13px;" data-i18n="catchTrialStatsLabel">對照靜音與盲猜：</span>
+          <span id="test-catch-stats" style="font-size: 12px; color: #cbd5e1; font-weight: 600;">--</span>
+        </div>
+      </div>
+
+      <button id="btn-restart-test" class="btn-primary">
+        <span data-i18n="btnRestartTest">🔄 重新測驗 (10 秒準備)</span>
+      </button>
+    </section>
+
+    <!-- VIEW 4: CALIBRATION -->
+    <section id="view-calib" class="view-section">
+      <div class="card">
+        <div class="card-title" data-i18n="calibTitle">📱 手機分貝計快速校準</div>
+        <div class="card-desc" style="margin-bottom: 16px;" data-i18n="calibDesc">
+          利用另一部手機開啟分貝計 App（如 NIOSH SLM），緊貼耳機發聲面量測 1000 Hz 參考音之物理聲壓。
+        </div>
+
+        <div style="margin-bottom: 14px;">
+          <label style="font-size: 12px; color: #94a3b8; display: block; margin-bottom: 6px;">選擇發聲耳機單體：</label>
+          <select id="calib-ear-select" style="width: 100%; padding: 10px; background: #090d16; color: #fff; border: 1px solid #334155; border-radius: 8px;">
+            <option value="Left">左耳單體 (Left Channel)</option>
+            <option value="Right">右耳單體 (Right Channel)</option>
+          </select>
+        </div>
+
+        <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+          <button id="btn-play-calib" class="btn-primary" style="background: #10b981; flex: 1; padding: 12px; font-size: 14px;">🔊 播放 1000Hz 參考音</button>
+          <button id="btn-stop-calib" class="btn-primary" style="background: #ef4444; width: 80px; padding: 12px; font-size: 14px;">⏹️ 停止</button>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px;">
+          <div>
+            <label style="font-size: 11px; color: #94a3b8;">左耳實測 (dB SPL)</label>
+            <input id="input-spl-left" type="number" value="70.0" step="0.5" style="width: 100%; padding: 8px; background: #090d16; color: #fff; border: 1px solid #334155; border-radius: 8px; font-weight: bold; font-size: 15px; margin-top: 4px;">
+          </div>
+          <div>
+            <label style="font-size: 11px; color: #94a3b8;">右耳實測 (dB SPL)</label>
+            <input id="input-spl-right" type="number" value="70.0" step="0.5" style="width: 100%; padding: 8px; background: #090d16; color: #fff; border: 1px solid #334155; border-radius: 8px; font-weight: bold; font-size: 15px; margin-top: 4px;">
+          </div>
+        </div>
+
+        <button id="btn-apply-calib" class="btn-primary" style="margin-bottom: 10px;" data-i18n="btnApplyCalib">⚡ 計算並儲存校正檔</button>
+        <button id="btn-reset-calib" class="btn-secondary" style="width: 100%;" data-i18n="btnResetCalib">重設為預設刻度</button>
+      </div>
+    </section>
+
+    <!-- Emergency Stop Alert Modal -->
+    <div id="modal-emergency-stop" class="modal-overlay" style="display: none;">
+      <div class="modal-card">
+        <div class="modal-icon-danger">🛑</div>
+        <div class="modal-title" data-i18n="modalEstopTitle">測驗已緊急中止</div>
+        <div class="modal-desc" data-i18n="modalEstopDesc">已立即切斷所有聲音輸出與排程，保護您的聽力安全。</div>
+        <div class="modal-actions">
+          <button id="btn-modal-home" class="btn-primary" style="background: #2563eb; margin-bottom: 8px;" data-i18n="btnModalHome">返回首頁</button>
+          <button id="btn-modal-restart" class="btn-secondary" style="width: 100%;" data-i18n="btnModalRestart">重新開始測驗</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Mobile Nav Bar -->
+    <nav class="bottom-nav">
+      <div class="nav-item active" data-view="home">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        <span data-i18n="navHome">首頁</span>
+      </div>
+      <div class="nav-item" data-view="test">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></svg>
+        <span data-i18n="navTest">測驗</span>
+      </div>
+      <div class="nav-item" data-view="result">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        <span data-i18n="navAudiogram">聽力圖</span>
+      </div>
+      <div class="nav-item" data-view="calib">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <span data-i18n="navCalib">校正</span>
+      </div>
+    </nav>
+  </div>
+
+  <script type="module" src="js/app.js?v=10"></script>
+</body>
+</html>

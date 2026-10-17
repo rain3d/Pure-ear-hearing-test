@@ -1,0 +1,18 @@
+<Application x:Class="HearingTest.App.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:HearingTest.App"
+             xmlns:converters="clr-namespace:HearingTest.App.Converters"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/DesignSystem.xaml"/>
+                <ResourceDictionary Source="Resources/Strings/Strings.zh-TW.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+            <converters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter"/>
+            <converters:StringEqualsConverter x:Key="StringEqualsConverter"/>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

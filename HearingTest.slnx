@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/HearingTest.App/HearingTest.App.csproj" />
+    <Project Path="src/HearingTest.Audio/HearingTest.Audio.csproj" />
+    <Project Path="src/HearingTest.Calibration/HearingTest.Calibration.csproj" />
+    <Project Path="src/HearingTest.Domain/HearingTest.Domain.csproj" />
+    <Project Path="src/HearingTest.Hardware/HearingTest.Hardware.csproj" />
+    <Project Path="src/HearingTest.Persistence/HearingTest.Persistence.csproj" />
+    <Project Path="src/HearingTest.Reporting/HearingTest.Reporting.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/HearingTest.Tests/HearingTest.Tests.csproj" />
+  </Folder>
+</Solution>
