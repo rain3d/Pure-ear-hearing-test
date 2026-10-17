@@ -44,6 +44,11 @@
     <SolidColorBrush x:Key="SuccessBrush" Color="{StaticResource SuccessColor}"/>
     <SolidColorBrush x:Key="DangerBrush" Color="{StaticResource DangerColor}"/>
 
+    <!-- Convenience Aliases -->
+    <SolidColorBrush x:Key="SurfaceLightBrush" Color="{StaticResource SurfaceHoverColor}"/>
+    <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource CardBorderColor}"/>
+    <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource PrimaryAccentColor}"/>
+
     <!-- SVG Icon Geometries -->
     <!-- Home / Dashboard -->
     <Geometry x:Key="IconHome">M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z</Geometry>
